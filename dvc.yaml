@@ -1,0 +1,39 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - src/prepare.py
+    params:
+    - prepare.classes
+    - prepare.datasets
+    - prepare.train_size
+    - prepare.seed
+    outs:
+    - data/prepared
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py
+    - cfg/obj.data
+    - cfg/obj.names
+    - cfg/yolo.cfg
+    params:
+    - train.cfg
+    - train.obj_data
+    outs:
+    - runs/train/backup/yolo_final.weights
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - src/evaluate.py
+    - cfg/obj.data
+    - cfg/obj.names
+    - cfg/yolo.cfg
+    params:
+    - evaluate.cfg
+    - evaluate.obj_data
+    - evaluate.obj_names
+    - evaluate.valid_txt
+    - evaluate.weights
+    outs:
+    - runs/eval/result.json

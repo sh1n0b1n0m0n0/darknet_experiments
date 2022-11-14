@@ -1,0 +1,87 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: src/prepare.py
+      md5: 7295635e039f2255050eb9e391951568
+      size: 3902
+    params:
+      params.yaml:
+        prepare.classes:
+        - truck_cabin
+        - tank_trailer
+        - car_carrier
+        - car_trailer
+        - car_carrier_trailer
+        - trailer
+        - platform_trailer
+        - car
+        - motorcycle
+        - bus
+        - truck
+        - pickup
+        - axle
+        - unknown
+        - van
+        - dump_truck_body
+        - service_vehicle
+        - drawbar
+        prepare.datasets:
+        - 80
+        prepare.seed: 42
+        prepare.train_size: 0.8
+    outs:
+    - path: data/prepared
+      md5: 7b9aecc8b2c59f75d323f0f0b0993fdd.dir
+      size: 132396
+      nfiles: 2
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: cfg/obj.data
+      md5: 6d38f23bd29c903b02eb379fe084bc34
+      size: 322
+    - path: cfg/obj.names
+      md5: d863f386f6c521fe47f546c0c5150a4b
+      size: 183
+    - path: cfg/yolo.cfg
+      md5: f80ff02c15d462c5d28fffaf21195c88
+      size: 2791
+    - path: src/train.py
+      md5: 3b273777599f62d993386acbcd55038d
+      size: 694
+    params:
+      params.yaml:
+        train.cfg: cfg/yolo.cfg
+        train.obj_data: cfg/obj.data
+    outs:
+    - path: runs/train/backup/yolo_final.weights
+      md5: 796b76ae13f64b00273442992888f60b
+      size: 34862076
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: cfg/obj.data
+      md5: 6d38f23bd29c903b02eb379fe084bc34
+      size: 322
+    - path: cfg/obj.names
+      md5: d863f386f6c521fe47f546c0c5150a4b
+      size: 183
+    - path: cfg/yolo.cfg
+      md5: f80ff02c15d462c5d28fffaf21195c88
+      size: 2791
+    - path: src/evaluate.py
+      md5: 6dae9ae8abcf437753d2e069e79ae636
+      size: 935
+    params:
+      params.yaml:
+        evaluate.cfg: cfg/yolo.cfg
+        evaluate.obj_data: cfg/obj.data
+        evaluate.obj_names: cfg/obj.names
+        evaluate.valid_txt: data/prepared/valid.txt
+        evaluate.weights: runs/train/backup/yolo_final.weights
+    outs:
+    - path: runs/eval/result.json
+      md5: 167e08d2f5a5e72e9b30a53395e76281
+      size: 61

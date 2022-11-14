@@ -1,0 +1,6 @@
+/runs
+/venv
+/.vscode
+/.dvc
+*.list
+*.jp*g
