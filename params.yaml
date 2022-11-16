@@ -9,6 +9,11 @@ train:
   obj_data: cfg/obj.data
   obj_names: cfg/obj.names
 
+evaluate:
+  gt_path: runs/eval/pascalvoc_gt
+  det_path: runs/eval/pascalvoc_det
+  save_path: runs/eval/results
+
 make_json:
   cfg: cfg/yolo.cfg
   obj_data: cfg/obj.data
@@ -17,4 +22,10 @@ make_json:
   weights: runs/train/backup/yolo_final.weights
   result: runs/eval/result.json
   thresh: 0.5
-  
+
+make_gt_det:
+  valid_txt: data/prepared/valid.txt
+  obj_names: cfg/obj.names
+  result: runs/eval/result.json
+  gt_path: runs/eval/pascalvoc_gt
+  det_path: runs/eval/pascalvoc_det
