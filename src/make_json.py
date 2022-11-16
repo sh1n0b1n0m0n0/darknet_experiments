@@ -5,9 +5,10 @@ import subprocess
 
 
 def main():
-    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["evaluate"]
+    darknet_path = str(Path.home() / Path("roadview_research/code/darknet/darknet"))
+    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["make_json"]
     with open(params['valid_txt'], 'r') as f:
-        p = subprocess.run(["/home/alexsh/roadview_research/code/darknet/darknet", 
+        p = subprocess.run([darknet_path, 
                         "detector", 
                         "test",  
                         '-dont_show',
@@ -19,7 +20,6 @@ def main():
                         params['result'],
                         '-thresh',
                         str(params['thresh'])], stdin=f)
-        print(p)
 
 if __name__ == "__main__":
     main()

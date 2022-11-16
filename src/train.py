@@ -7,8 +7,9 @@ import subprocess
 
 
 def main():
+    darknet_path = str(Path.home() / Path("roadview_research/code/darknet/darknet"))
     params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["train"]
-    subprocess.run(["/home/alexsh/roadview_research/code/darknet/darknet", 
+    subprocess.run([darknet_path, 
                     "detector", 
                     "train", 
                     "-dont_show",

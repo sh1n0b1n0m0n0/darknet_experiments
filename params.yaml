@@ -9,7 +9,7 @@ train:
   obj_data: cfg/obj.data
   obj_names: cfg/obj.names
 
-evaluate:
+make_json:
   cfg: cfg/yolo.cfg
   obj_data: cfg/obj.data
   obj_names: cfg/obj.names
