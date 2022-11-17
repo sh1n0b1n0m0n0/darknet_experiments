@@ -2,24 +2,28 @@
 import yaml
 from pathlib import Path
 import subprocess
-
+import os
 
 def main():
-    darknet_path = str(Path.home()) + "/roadview_research/code/darknet/darknet"
+    if not os.environ.get("DN_BIN"):
+        raise Exception("please specify DN_BIN env variable that points to compiled darknet")
+    darknet_path = os.environ["DN_BIN"] + "/darknet"
     params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["make_json"]
     with open(params['valid_txt'], 'r') as f:
-        p = subprocess.run([darknet_path, 
-                        "detector", 
-                        "test",  
-                        '-dont_show',
-                        params['obj_data'], 
-                        params['cfg'],
-                        params['weights'],
-                        '-ext_output',
-                        '-out',
-                        params['result'],
-                        '-thresh',
-                        str(params['thresh'])], stdin=f)
+        subprocess.run([
+            darknet_path,
+            "detector",
+            "test",
+            '-dont_show',
+            params['obj_data'],
+            params['cfg'],
+            params['weights'],
+            '-ext_output',
+            '-out',
+            params['result'],
+            '-thresh',
+            str(params['thresh'])
+        ], stdin=f)
 
 if __name__ == "__main__":
     main()

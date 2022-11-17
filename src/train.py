@@ -4,18 +4,23 @@
 import yaml
 from pathlib import Path
 import subprocess
-
+import os
 
 def main():
-    darknet_path = str(Path.home()) + "/roadview_research/code/darknet/darknet"
+    if not os.environ.get("DN_BIN"):
+        raise Exception("please specify DN_BIN env variable that points to compiled darknet")
+    darknet_path = os.environ["DN_BIN"] + "/darknet"
+
     params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["train"]
-    subprocess.run([darknet_path, 
-                    "detector", 
-                    "train", 
+    subprocess_params = [darknet_path,
+                    "detector",
+                    "train",
                     "-dont_show",
-                    "-map", 
-                    params['obj_data'], 
-                    params['cfg']])
+                    "-map",
+                    params['obj_data'],
+                    params['cfg']]
+    print(f"train.py: running {' '.join(subprocess_params)}")
+    subprocess.run(subprocess_params)
 
 if __name__ == "__main__":
     main()

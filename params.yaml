@@ -6,7 +6,7 @@ prepare:
 
 train:
   cfg: cfg/yolo.cfg
-  obj_data: cfg/obj.data
+  obj_data: data/prepared/obj.data
   obj_names: cfg/obj.names
 
 evaluate:
@@ -16,7 +16,7 @@ evaluate:
 
 make_json:
   cfg: cfg/yolo.cfg
-  obj_data: cfg/obj.data
+  obj_data: data/prepared/obj.data
   obj_names: cfg/obj.names
   valid_txt: data/prepared/valid.txt
   weights: runs/train/backup/yolo_best.weights

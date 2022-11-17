@@ -1,6 +1,0 @@
-train = /home/alexsh/darknet_experiments/data/prepared/train.txt
-names = /home/alexsh/darknet_experiments/cfg/obj.names
-backup = /home/alexsh/darknet_experiments/runs/train/backup
-classes = 18
-valid = /home/alexsh/darknet_experiments/data/prepared/valid.txt
-test = /home/alexsh/darknet_experiments/data/prepared/valid.txt

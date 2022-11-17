@@ -2,55 +2,59 @@ stages:
   prepare:
     cmd: python src/prepare.py
     deps:
-    - src/prepare.py
+      - src/prepare.py
+      - data/80
+      - data/123
     params:
-    - prepare.classes
-    - prepare.datasets
-    - prepare.train_size
-    - prepare.seed
+      - prepare.classes
+      - prepare.datasets
+      - prepare.train_size
+      - prepare.seed
     outs:
-    - data/prepared
+      - data/prepared
   train:
     cmd: python src/train.py
     deps:
-    - src/train.py
-    - cfg/obj.data
-    - cfg/obj.names
-    - cfg/yolo.cfg
+      - data/prepared
+      - src/train.py
+      - data/prepared/obj.data
+      - cfg/obj.names
+      - cfg/yolo.cfg
     params:
-    - train.cfg
-    - train.obj_data
+      - train.cfg
+      - train.obj_data
     outs:
-    - runs/train/backup/yolo_best.weights
+      - runs/train/backup/yolo_best.weights
   make_json:
     cmd: python src/make_json.py
     deps:
-    - src/make_json.py
-    - cfg/obj.data
-    - cfg/obj.names
-    - cfg/yolo.cfg
+      - src/make_json.py
+      - cfg/obj.data
+      - cfg/obj.names
+      - cfg/yolo.cfg
+      - runs/train/backup/yolo_best.weights
     params:
-    - make_json.cfg
-    - make_json.obj_data
-    - make_json.obj_names
-    - make_json.valid_txt
-    - make_json.weights
+      - make_json.cfg
+      - make_json.obj_data
+      - make_json.obj_names
+      - make_json.valid_txt
+      - make_json.weights
     outs:
-    - runs/eval/result.json
+      - runs/eval/result.json
   prepare_gt:
     cmd: python src/make_gt_det.py
     deps:
-    - src/make_gt_det.py
-    - runs/eval/result.json
-    - data/prepared/valid.txt
-    - cfg/obj.names
+      - src/make_gt_det.py
+      - runs/eval/result.json
+      - data/prepared/valid.txt
+      - cfg/obj.names
     outs:
-    - runs/eval/pascalvoc_gt
-    - runs/eval/pascalvoc_det
+      - runs/eval/pascalvoc_gt
+      - runs/eval/pascalvoc_det
   evaluate:
     cmd: python src/evaluate.py
     deps:
-    - runs/eval/pascalvoc_gt
-    - runs/eval/pascalvoc_det
+      - runs/eval/pascalvoc_gt
+      - runs/eval/pascalvoc_det
     outs:
-    - runs/eval/results
+      - runs/eval/results
