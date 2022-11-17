@@ -1,7 +1,7 @@
 prepare:
-  datasets: [80]
-  train_size: 0.80
-  seed: 42
+  datasets: [80, 123]
+  train_size: 0.75
+  seed: 666
   classes: [truck_cabin, tank_trailer, car_carrier, car_trailer, car_carrier_trailer, trailer, platform_trailer, car, motorcycle, bus, truck, pickup, axle, unknown, van, dump_truck_body, service_vehicle, drawbar]
 
 train:
@@ -19,7 +19,7 @@ make_json:
   obj_data: cfg/obj.data
   obj_names: cfg/obj.names
   valid_txt: data/prepared/valid.txt
-  weights: runs/train/backup/yolo_final.weights
+  weights: runs/train/backup/yolo_best.weights
   result: runs/eval/result.json
   thresh: 0.5
 

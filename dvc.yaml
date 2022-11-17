@@ -21,7 +21,7 @@ stages:
     - train.cfg
     - train.obj_data
     outs:
-    - runs/train/backup/yolo_final.weights
+    - runs/train/backup/yolo_best.weights
   make_json:
     cmd: python src/make_json.py
     deps:
@@ -38,25 +38,19 @@ stages:
     outs:
     - runs/eval/result.json
   prepare_gt:
-    cmd: python src/convert_darknet_gt_to_pascal_voc_gt.py data/prepared/valid.txt cfg/obj.names
+    cmd: python src/make_gt_det.py
     deps:
-    - src/convert_darknet_gt_to_pascal_voc_gt.py
+    - src/make_gt_det.py
+    - runs/eval/result.json
     - data/prepared/valid.txt
     - cfg/obj.names
     outs:
-    - runs/eval/pascal_voc_gt
-  prepare_detect:
-    cmd: python src/convert_darknet_json_detect_to_pascal_voc_detect.py runs/eval/result.json
-    deps:
-    - src/convert_darknet_json_detect_to_pascal_voc_detect.py
-    - runs/eval/result.json
-    outs:
-    - runs/eval/pascal_voc_detect
+    - runs/eval/pascalvoc_gt
+    - runs/eval/pascalvoc_det
   evaluate:
-    cmd: python src/pascalvoc.py -gt runs/eval/pascal_voc_gt -det runs/eval/pascal_voc_detect -sp runs/eval/results
+    cmd: python src/evaluate.py
     deps:
-    - src/pascalvoc.py
-    - runs/eval/pascal_voc_gt
-    - runs/eval/pascal_voc_detect
+    - runs/eval/pascalvoc_gt
+    - runs/eval/pascalvoc_det
     outs:
     - runs/eval/results
