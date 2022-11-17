@@ -29,7 +29,7 @@ stages:
     cmd: python src/make_json.py
     deps:
       - src/make_json.py
-      - cfg/obj.data
+      - data/prepared/obj.data
       - cfg/obj.names
       - cfg/yolo.cfg
       - runs/train/backup/yolo_best.weights
