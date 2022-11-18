@@ -5,7 +5,7 @@ import os
 
 
 def main():
-    ODM_path = str(Path.home()) + "/Object-Detection-Metrics/"
+    ODM_path = "src/Object-Detection-Metrics/"
     pascalvoc_path = "pascalvoc.py"
     params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["evaluate"]
     cwd = Path().resolve()

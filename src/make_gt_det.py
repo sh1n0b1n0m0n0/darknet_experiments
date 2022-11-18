@@ -4,7 +4,7 @@ import subprocess
 
 
 def main():
-    darknet_helper_path = str(Path.home()) + "/darknet_train_helper/"
+    darknet_helper_path = "./src/darknet_train_helper/"
     gt_path = darknet_helper_path + "convert_darknet_gt_to_pascal_voc_gt.py"
     det_path = darknet_helper_path + "convert_darknet_json_detect_to_pascal_voc_detect.py"
 
