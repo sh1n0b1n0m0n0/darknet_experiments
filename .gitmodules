@@ -1,6 +1,6 @@
-[submodule "src/Object-Detection-Metrics"]
-	path = src/Object-Detection-Metrics
-	url = git@github.com:IZDEVELOPER-ORG/Object-Detection-Metrics.git
 [submodule "src/darknet_train_helper"]
 	path = src/darknet_train_helper
 	url = git@github.com:sh1n0b1n0m0n0/darknet_train_helper.git
+[submodule "src/Object-Detection-Metrics"]
+	path = src/Object-Detection-Metrics
+	url = git@github.com:IZDEVELOPER-ORG/Object-Detection-Metrics.git
