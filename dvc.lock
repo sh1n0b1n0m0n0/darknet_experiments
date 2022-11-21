@@ -1,0 +1,105 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/123
+      md5: 7f8d82700ccb746cfb1094158f921d5d.dir
+      size: 337798049
+      nfiles: 1070
+    - path: data/80
+      md5: 333712d37e0c5eefcfc0fc7906c94b2d.dir
+      size: 203662061
+      nfiles: 2596
+    - path: src/prepare.py
+      md5: 1cd6d98d4fc871bcc33930c7bada64d1
+      size: 3935
+    outs:
+    - path: data/prepared
+      md5: 993f788d2a9c61e5651cbe15e7643a05.dir
+      size: 178160
+      nfiles: 3
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: cfg/obj.names
+      md5: d863f386f6c521fe47f546c0c5150a4b
+      size: 183
+    - path: cfg/yolo.cfg
+      md5: fb97f4cd2e820a3314f24766b4c290f3
+      size: 2791
+    - path: data/prepared
+      md5: 993f788d2a9c61e5651cbe15e7643a05.dir
+      size: 178160
+      nfiles: 3
+    - path: data/prepared/obj.data
+      md5: 6136f00d888894f77e68e1f40746555e
+      size: 289
+    - path: src/train.py
+      md5: 8955cf6c8bc816609a80797d0a7c735d
+      size: 942
+    outs:
+    - path: runs/train/backup/yolo_best.weights
+      md5: a11aab8165b7c6e21452b84de5fb26c7
+      size: 34862076
+  make_json:
+    cmd: python src/make_json.py
+    deps:
+    - path: cfg/obj.names
+      md5: d863f386f6c521fe47f546c0c5150a4b
+      size: 183
+    - path: cfg/yolo.cfg
+      md5: fb97f4cd2e820a3314f24766b4c290f3
+      size: 2791
+    - path: data/prepared/obj.data
+      md5: 6136f00d888894f77e68e1f40746555e
+      size: 289
+    - path: runs/train/backup/yolo_best.weights
+      md5: a11aab8165b7c6e21452b84de5fb26c7
+      size: 34862076
+    - path: src/make_json.py
+      md5: ee66bb1e3c3754ddfbcd12d2a056b92e
+      size: 1073
+    outs:
+    - path: runs/eval/result.json
+      md5: 7f3022104199c408c4406149bef1d143
+      size: 308380
+  prepare_gt:
+    cmd: python src/make_gt_det.py
+    deps:
+    - path: cfg/obj.names
+      md5: d863f386f6c521fe47f546c0c5150a4b
+      size: 183
+    - path: data/prepared/valid.txt
+      md5: 5f15148f21c3e263908a92b1c7514898
+      size: 44999
+    - path: runs/eval/result.json
+      md5: 7f3022104199c408c4406149bef1d143
+      size: 308380
+    - path: src/make_gt_det.py
+      md5: 94f916ad43fc83516cb44a042067b373
+      size: 901
+    outs:
+    - path: runs/eval/pascalvoc_det
+      md5: f206014bd6fda14060d1e8d47e647593.dir
+      size: 37404
+      nfiles: 703
+    - path: runs/eval/pascalvoc_gt
+      md5: 6b1f9ebd0bea0fc3bc94909048e52c40.dir
+      size: 41675
+      nfiles: 703
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: runs/eval/pascalvoc_det
+      md5: f206014bd6fda14060d1e8d47e647593.dir
+      size: 37404
+      nfiles: 703
+    - path: runs/eval/pascalvoc_gt
+      md5: 6b1f9ebd0bea0fc3bc94909048e52c40.dir
+      size: 41675
+      nfiles: 703
+    outs:
+    - path: runs/eval/results/results.csv
+      md5: 95cfe5ea5518f45b34ad06f8ec750829
+      size: 1145
