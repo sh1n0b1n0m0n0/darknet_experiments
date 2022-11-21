@@ -1,0 +1,24 @@
+train:
+  cfg: cfg/yolo.cfg
+  obj_data: data/prepared/obj.data
+  obj_names: cfg/obj.names
+
+evaluate:
+  gt_path: runs/eval/pascalvoc_gt
+  det_path: runs/eval/pascalvoc_det
+  save_path: runs/eval/results
+
+make_json:
+  cfg: cfg/yolo.cfg
+  obj_data: data/prepared/obj.data
+  obj_names: cfg/obj.names
+  valid_txt: data/prepared/valid.txt
+  weights: runs/train/backup/yolo_best.weights
+  result: runs/eval/result.json
+
+make_gt_det:
+  valid_txt: data/prepared/valid.txt
+  obj_names: cfg/obj.names
+  result: runs/eval/result.json
+  gt_path: runs/eval/pascalvoc_gt
+  det_path: runs/eval/pascalvoc_det

@@ -11,14 +11,14 @@ def main():
         raise Exception("please specify DN_BIN env variable that points to compiled darknet")
     darknet_path = os.environ["DN_BIN"] + "/darknet"
 
-    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["train"]
+    paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["train"]
     subprocess_params = [darknet_path,
                     "detector",
                     "train",
                     "-dont_show",
                     "-map",
-                    params['obj_data'],
-                    params['cfg']]
+                    paths['obj_data'],
+                    paths['cfg']]
     print(f"train.py: running {' '.join(subprocess_params)}")
     subprocess.run(subprocess_params)
 

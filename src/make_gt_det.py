@@ -8,22 +8,22 @@ def main():
     gt_path = darknet_helper_path + "convert_darknet_gt_to_pascal_voc_gt.py"
     det_path = darknet_helper_path + "convert_darknet_json_detect_to_pascal_voc_detect.py"
 
-    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["make_gt_det"]
+    paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["make_gt_det"]
     subprocess.run(["python",
                     gt_path,
                     "-file_path", 
-                    params["valid_txt"], 
+                    paths["valid_txt"], 
                     "-names",
-                    params["obj_names"], 
+                    paths["obj_names"], 
                     "-save_path",
-                    params["gt_path"]])
+                    paths["gt_path"]])
 
     subprocess.run(["python",
                     det_path,
                     "-file_path", 
-                    params["result"], 
+                    paths["result"], 
                     "-save_path",
-                    params["det_path"]])
+                    paths["det_path"]])
 
 if __name__ == "__main__":
     main()

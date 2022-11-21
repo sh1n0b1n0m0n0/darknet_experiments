@@ -8,19 +8,20 @@ def main():
     if not os.environ.get("DN_BIN"):
         raise Exception("please specify DN_BIN env variable that points to compiled darknet")
     darknet_path = os.environ["DN_BIN"] + "/darknet"
-    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["make_json"]
-    with open(params['valid_txt'], 'r') as f:
+    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["prepare"]
+    paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["make_json"]
+    with open(paths['valid_txt'], 'r') as f:
         subprocess.run([
             darknet_path,
             "detector",
             "test",
             '-dont_show',
-            params['obj_data'],
-            params['cfg'],
-            params['weights'],
+            paths['obj_data'],
+            paths['cfg'],
+            paths['weights'],
             '-ext_output',
             '-out',
-            params['result'],
+            paths['result'],
             '-thresh',
             str(params['thresh'])
         ], stdin=f)

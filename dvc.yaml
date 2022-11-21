@@ -5,11 +5,6 @@ stages:
       - src/prepare.py
       - data/80
       - data/123
-    params:
-      - prepare.classes
-      - prepare.datasets
-      - prepare.train_size
-      - prepare.seed
     outs:
       - data/prepared
   train:
@@ -20,9 +15,6 @@ stages:
       - data/prepared/obj.data
       - cfg/obj.names
       - cfg/yolo.cfg
-    params:
-      - train.cfg
-      - train.obj_data
     outs:
       - runs/train/backup/yolo_best.weights
   make_json:
@@ -33,12 +25,6 @@ stages:
       - cfg/obj.names
       - cfg/yolo.cfg
       - runs/train/backup/yolo_best.weights
-    params:
-      - make_json.cfg
-      - make_json.obj_data
-      - make_json.obj_names
-      - make_json.valid_txt
-      - make_json.weights
     outs:
       - runs/eval/result.json
   prepare_gt:
@@ -56,5 +42,6 @@ stages:
     deps:
       - runs/eval/pascalvoc_gt
       - runs/eval/pascalvoc_det
-    outs:
-      - runs/eval/results
+    metrics:
+    - runs/eval/results/results.csv:
+        cache: false
