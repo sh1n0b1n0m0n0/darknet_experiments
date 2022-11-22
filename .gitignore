@@ -6,3 +6,4 @@
 *.jp*g
 *.png
 dvc_plots/*
+yolo_best.weights
