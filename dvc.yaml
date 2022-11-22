@@ -3,8 +3,6 @@ stages:
     cmd: python src/prepare.py
     deps:
       - src/prepare.py
-      - data/80
-      - data/123
     outs:
       - data/prepared
   train:
