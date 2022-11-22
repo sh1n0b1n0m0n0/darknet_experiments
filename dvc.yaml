@@ -40,6 +40,20 @@ stages:
     deps:
       - runs/eval/pascalvoc_gt
       - runs/eval/pascalvoc_det
+
     metrics:
     - runs/eval/results/results.csv:
         cache: false
+
+    plots:
+      - runs/eval/results/axle.json:
+          x: recall
+          y: precision
+
+      - runs/eval/results/trailer.json:
+          x: recall
+          y: precision
+
+      - runs/eval/results/trailer.png
+
+
