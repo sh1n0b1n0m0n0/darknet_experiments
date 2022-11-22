@@ -100,6 +100,12 @@ stages:
       size: 32528
       nfiles: 579
     outs:
+    - path: runs/eval/results/axle.png
+      md5: e298a88981d0c50e3289a2ec91eded44
+      size: 29090
+    - path: runs/eval/results/precision_recall.json
+      md5: c79e19cd4140770a81279843adeb89dc
+      size: 30568
     - path: runs/eval/results/results.csv
       md5: d80f18d96ea5ea79debd60a9c9f80df6
       size: 944

@@ -5,3 +5,4 @@
 *.list
 *.jp*g
 *.png
+dvc_plots/*
