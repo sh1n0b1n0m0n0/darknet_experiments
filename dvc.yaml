@@ -1,4 +1,10 @@
 stages:
+  remove_small_boxes:
+    cmd: python src/darknet_train_helper/remove_all_small_boxes.py
+    deps:
+      - src/darknet_train_helper/remove_all_small_boxes.py
+      - params.yaml
+      - paths.yaml
   prepare:
     cmd: python src/prepare.py
     deps:
@@ -42,18 +48,23 @@ stages:
       - runs/eval/pascalvoc_det
 
     metrics:
-    - runs/eval/results/results.csv:
-        cache: false
+      - runs/eval/results/results.csv:
+          cache: false
 
     plots:
       - runs/eval/results/axle.json:
+          title: axle
+          x: recall
+          y: precision
+
+      - runs/eval/results/bus.json:
+          title: bus
           x: recall
           y: precision
 
       - runs/eval/results/trailer.json:
+          title: trailer
           x: recall
           y: precision
 
       - runs/eval/results/trailer.png
-
-

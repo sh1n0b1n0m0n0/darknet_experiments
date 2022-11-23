@@ -2,6 +2,7 @@ train:
   cfg: cfg/yolo.cfg
   obj_data: data/prepared/obj.data
   obj_names: cfg/obj.names
+  datasets_root: data
 
 evaluate:
   gt_path: runs/eval/pascalvoc_gt
@@ -22,3 +23,7 @@ make_gt_det:
   result: runs/eval/result.json
   gt_path: runs/eval/pascalvoc_gt
   det_path: runs/eval/pascalvoc_det
+
+submodule:
+  dth: src/darknet_train_helper
+  odm: src/Object-Detection-Metrics
