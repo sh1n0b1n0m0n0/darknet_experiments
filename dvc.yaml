@@ -61,10 +61,61 @@ stages:
           title: bus
           x: recall
           y: precision
-
+      
       - runs/eval/results/trailer.json:
           title: trailer
           x: recall
           y: precision
+
+      - runs/eval/results/car_carrier_trailer.json:
+          title: car_carrier_trailer
+          x: recall
+          y: precision
+
+      - runs/eval/results/car_carrier.json:
+          title: car_carrier
+          x: recall
+          y: precision
+
+      - runs/eval/results/car.json:
+          title: car
+          x: recall
+          y: precision
+
+      - runs/eval/results/dump_truck_body.json:
+          title: dump_truck_body
+          x: recall
+          y: precision
+
+      - runs/eval/results/pickup.json:
+          title: pickup
+          x: recall
+          y: precision
+
+      - runs/eval/results/platform_trailer.json:
+          title: platform_trailer
+          x: recall
+          y: precision
+
+      - runs/eval/results/tank_trailer.json:
+          title: tank_trailer
+          x: recall
+          y: precision
+      
+      - runs/eval/results/truck_cabin.json:
+          title: truck_cabin
+          x: recall
+          y: precision
+
+      - runs/eval/results/truck.json:
+          title: truck_cabin
+          x: recall
+          y: precision
+
+      - runs/eval/results/van.json:
+          title: van
+          x: recall
+          y: precision
+      
 
       - runs/eval/results/trailer.png

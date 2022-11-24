@@ -1,7 +1,47 @@
 prepare:
-  datasets: ["80_test"]
+  datasets: [80, 
+             81, 
+             82, 
+             115, 
+             116, 
+             118, 
+             123, 
+             149, 
+             283, 
+             284, 
+             287, 
+             288, 
+             290, 
+             298, 
+             299, 
+             300, 
+             301, 
+             302, 
+             303, 
+             234, 
+             146, 
+             242, 
+             309, 
+             310, 
+             311, 
+             312, 
+             313, 
+             314, 
+             291, 
+             294, 
+             304, 
+             305, 
+             306, 
+             307, 
+             308, 
+             296, 
+             "empty_31",
+             "empty_36",
+             "empty_37",
+             "empty_39",
+             "empty_41"]
   train_size: 0.80
   seed: 0
   classes: [truck_cabin, tank_trailer, car_carrier, car_trailer, car_carrier_trailer, trailer, platform_trailer, car, motorcycle, bus, truck, pickup, axle, unknown, van, dump_truck_body, service_vehicle, drawbar]
   thresh: 0.5
-  remove_small_boxes: True
+  remove_small_boxes: False
