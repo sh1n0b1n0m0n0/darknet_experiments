@@ -103,12 +103,57 @@ stages:
     - path: runs/eval/results/axle.json
       md5: c57be98d404b0127afe561ad0714999f
       size: 33222
+    - path: runs/eval/results/bus.json
+      md5: 0226de0692c8fb76fd38f37396933376
+      size: 1681
+    - path: runs/eval/results/car.json
+      md5: 81ea2e0cbd6b1648dd8e6bdb4cd6070d
+      size: 5665
+    - path: runs/eval/results/car_carrier.json
+      md5: 3670f7f06a89091b52d96f86ec78b154
+      size: 278
+    - path: runs/eval/results/car_carrier_trailer.json
+      md5: 430b1eebdbd4413f510d7e2b9f1c261b
+      size: 452
+    - path: runs/eval/results/dump_truck_body.json
+      md5: 905f0deed0f5b8ad119b650f07a39c30
+      size: 365
+    - path: runs/eval/results/pickup.json
+      md5: d278f8ffbb421556213487ae4b33a8be
+      size: 107
+    - path: runs/eval/results/platform_trailer.json
+      md5: 75cc6888a1cae541fe7bb741690c5e00
+      size: 366
     - path: runs/eval/results/results.csv
       md5: 6f90b9eff652dca4daa953266a27a463
       size: 1161
+    - path: runs/eval/results/tank_trailer.json
+      md5: 5babd43c8f06de7c3a74d70cbfb22db0
+      size: 26
     - path: runs/eval/results/trailer.json
       md5: 275069e0b4a9d9977f69c37fea557381
       size: 10483
     - path: runs/eval/results/trailer.png
       md5: beb01cf2bc69d4b883a0f8060f9d75e0
       size: 23576
+    - path: runs/eval/results/truck.json
+      md5: b6c08de3233c3d381b930345ca8e0d00
+      size: 20441
+    - path: runs/eval/results/truck_cabin.json
+      md5: 571bf1bdd032595d7d76f445649bb5e2
+      size: 14637
+    - path: runs/eval/results/van.json
+      md5: c941a3d80a93f51262633b022e567174
+      size: 17
+  remove_small_boxes:
+    cmd: python src/darknet_train_helper/remove_all_small_boxes.py
+    deps:
+    - path: params.yaml
+      md5: b80aa8de1ba9fa7d2c7bf522ccdc1bd4
+      size: 1098
+    - path: paths.yaml
+      md5: 47979cef8f4a2e878541435039666baf
+      size: 693
+    - path: src/darknet_train_helper/remove_all_small_boxes.py
+      md5: 5a037535492528d6f6b1bf5d245f859f
+      size: 2197
