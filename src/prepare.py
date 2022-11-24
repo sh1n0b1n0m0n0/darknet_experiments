@@ -6,6 +6,8 @@ import yaml
 import fire
 from sklearn.model_selection import train_test_split
 import os
+import shutil
+from tqdm import tqdm
 
 
 def make_obj_data_file(data_folder, backup_folder, num_of_classes):
@@ -68,24 +70,6 @@ def main():
     seed = params["seed"]
     classes = params["classes"]
     datasets_path = 'data'
-    data = []
-    types = ["*.jpg", "*.jp*g", "*.png"]
-    # print(root_path)
-    # print(Path.cwd())
-    for t in types:
-        for proj in datasets:
-            try:
-                for img in (Path.cwd() / Path(datasets_path) / str(proj)).glob(t):
-                    data.append(str(img))
-            except ValueError:
-                print("Dataset is Empty!")
-
-    df = pd.DataFrame(data, columns=["imgs"])
-    df_train, df_valid = train_test_split(
-        df, train_size=train_size, random_state=seed)
-    train_set_list = df_train["imgs"].tolist()
-    valid_set_list = df_valid["imgs"].tolist()
-
     prepared_dir = Path.cwd() / Path(datasets_path) / Path('prepared')
     train_val_path = make_folder(prepared_dir, '')
     train_txt_dir = Path(train_val_path) / "train.txt"
@@ -93,22 +77,76 @@ def main():
 
     runs_path = make_folder(Path.cwd() / Path('runs'), 'train')
     eval_path = make_folder(Path.cwd() / Path('runs'), 'eval')
-    print(runs_path)
     (Path(runs_path) / "backup").mkdir(parents=True, exist_ok=True)
-    make_obj_data_file(train_val_path, runs_path, 18)
-    # make_obj_names_file(train_val_path, classes)
 
-    with open(str(train_txt_dir), "w") as f:
-        for img in train_set_list:
-            f.write(str(img))
-            f.write("\n")
+    if params["use_default_train_valid"]:
+        default_train = "data/default_prepared/train.txt"
+        default_valid = "data/default_prepared/valid.txt"
+        df_train_list = []
+        df_valid_list = []
 
-    with open(str(valid_txt_dir), "w") as f:
-        for img in valid_set_list:
-            f.write(str(img))
-            f.write("\n")
+        with open(default_train, "r") as f:
+            t_lines = f.readlines()
 
-    print(f"train size:{train_size} seed:{seed}\n")
+        df_train = pd.DataFrame(t_lines, columns=["imgs"])
+
+        with open(default_valid, "r") as f:
+            v_lines = f.readlines()
+
+        df_valid = pd.DataFrame(v_lines, columns=["imgs"])
+
+        for index, row in tqdm(df_train.iterrows(), total=len(df_train)):
+            img_path = Path(row["imgs"])
+            df_train_list.append(str(Path.cwd()) + str(img_path))
+
+        for index, row in tqdm(df_valid.iterrows(), total=len(df_valid)):
+            img_path = Path(row["imgs"])
+            df_valid_list.append(str(Path.cwd()) + str(img_path))
+
+        with open(str(train_txt_dir), "w") as f:
+            for img in df_train_list:
+                f.write(str(img))
+
+        with open(str(valid_txt_dir), "w") as f:
+            for img in df_valid_list:
+                f.write(str(img))
+
+        make_obj_data_file(train_val_path, runs_path, 18)
+
+        print(f"train size:{train_size} seed:{seed}\n")
+    else:
+        data = []
+        types = ["*.jpg", "*.jp*g", "*.png"]
+        # print(root_path)
+        # print(Path.cwd())
+        for t in types:
+            for proj in datasets:
+                try:
+                    for img in (Path.cwd() / Path(datasets_path) / str(proj)).glob(t):
+                        data.append(str(img))
+                except ValueError:
+                    print("Dataset is Empty!")
+
+        df = pd.DataFrame(data, columns=["imgs"])
+        df_train, df_valid = train_test_split(
+            df, train_size=train_size, random_state=seed)
+        train_set_list = df_train["imgs"].tolist()
+        valid_set_list = df_valid["imgs"].tolist()
+
+        make_obj_data_file(train_val_path, runs_path, 18)
+        # make_obj_names_file(train_val_path, classes)
+
+        with open(str(train_txt_dir), "w") as f:
+            for img in train_set_list:
+                f.write(str(img))
+                f.write("\n")
+
+        with open(str(valid_txt_dir), "w") as f:
+            for img in valid_set_list:
+                f.write(str(img))
+                f.write("\n")
+
+        print(f"train size:{train_size} seed:{seed}\n")
 
 
 if __name__ == "__main__":
