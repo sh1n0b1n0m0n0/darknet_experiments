@@ -45,4 +45,4 @@ prepare:
   classes: [truck_cabin, tank_trailer, car_carrier, car_trailer, car_carrier_trailer, trailer, platform_trailer, car, motorcycle, bus, truck, pickup, axle, unknown, van, dump_truck_body, service_vehicle, drawbar]
   thresh: 0.5
   use_default_train_valid: True
-  remove_small_boxes: False
+  remove_small_boxes: True
