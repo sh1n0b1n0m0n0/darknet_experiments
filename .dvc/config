@@ -8,6 +8,6 @@
     url = /media/TrainingShare/dvc_root/darknet_experiments
 ['remote "gremote"']
     url = gdrive://1We5qoh4HbmIjtzKrLqNIzXQh-JHgpO7u
-    gdrive_client_id = 841831145413-io82clivvk3ov504110udd4sivhrptd2.apps.googleusercontent.com
-    gdrive_client_secret = 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
+    gdrive_client_id = 1013921526305-vnhcltnk84u026p79ql8ma9pu8ma6q9u.apps.googleusercontent.com
+    gdrive_client_secret = vfyh8lvrckHecII6rW7yKjVd
 
