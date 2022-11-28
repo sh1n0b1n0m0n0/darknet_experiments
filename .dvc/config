@@ -6,3 +6,8 @@
     gdrive_client_secret = vfyh8lvrckHecII6rW7yKjVd
 ['remote "smb"']
     url = /media/TrainingShare/dvc_root/darknet_experiments
+['remote "gremote"']
+    url = gdrive://1We5qoh4HbmIjtzKrLqNIzXQh-JHgpO7u
+    gdrive_client_id = 841831145413-io82clivvk3ov504110udd4sivhrptd2.apps.googleusercontent.com
+    gdrive_client_secret = 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
+
