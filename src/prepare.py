@@ -29,7 +29,7 @@ def make_obj_data_file(data_folder, backup_folder, num_of_classes):
         # data = f"train = {data_folder}/train.txt\nnames = {data_folder}/obj.names\nbackup = {backup_folder}/backup\nclasses = {num_of_classes}\nvalid = {data_folder}/valid.txt\ntest = {data_folder}/valid.txt"
         # f.write(data)
         f.write("train = " + str(Path(data_folder) / "train.txt") + "\n")
-        f.write("names = " + str(Path(data_folder).parent / "cfg/obj.names") + "\n")
+        f.write("names = " + str(Path(data_folder).parents[1] / "cfg/obj.names") + "\n")
         f.write("backup = " + backup_folder + "/backup\n")
         f.write("classes = " + str(num_of_classes) + "\n")
         f.write("valid = " + str(Path(data_folder) / "valid.txt") + "\n")
