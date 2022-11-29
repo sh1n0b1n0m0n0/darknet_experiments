@@ -1,3 +1,7 @@
+check:
+  train_txt: data/prepared/train.txt
+  valid_txt: data/prepared/valid.txt
+
 train:
   cfg: cfg/yolo.cfg
   obj_data: data/prepared/obj.data

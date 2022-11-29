@@ -1,6 +1,6 @@
 stages:
   prepare:
-    cmd: python src/darknet_train_helper/remove_all_small_boxes.py && python src/prepare.py
+    cmd: python src/darknet_train_helper/remove_all_small_boxes.py && python src/prepare.py && python src/check_datasets.py
     deps:
       - src/prepare.py
     outs:
