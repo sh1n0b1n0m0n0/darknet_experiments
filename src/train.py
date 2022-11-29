@@ -7,12 +7,16 @@ import subprocess
 import os
 import shutil
 
+
 def main():
     if not os.environ.get("DN_BIN"):
         raise Exception("please specify DN_BIN env variable that points to compiled darknet")
     darknet_path = os.environ["DN_BIN"] + "/darknet"
 
     paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["train"]
+
+    weights_path = Path("runs/train/backup/")
+    weights_path.mkdir(parents=True, exist_ok=True)
 
     subprocess_params = [darknet_path,
         "detector",
@@ -23,24 +27,18 @@ def main():
         paths['cfg']
     ]
 
+    existing_weights = Path("yolo_best.weights")
 
-    existing_weights = list(filter(
-        lambda x: x.stem == "yolo_best",
-        list(Path("runs/train/backup/").glob("*.weights")) + list(Path().glob("*.weights"))
-    ))
-
-    if len(existing_weights):
-        best_weights_file_path = existing_weights[0]
-        subprocess_params.append(str(best_weights_file_path))
-        weights_path = Path("runs/train/backup/")
-        weights_path.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(str(best_weights_file_path), str(weights_path / best_weights_file_path.name))
-
+    if existing_weights.is_file():
+        subprocess_params.append(str(existing_weights))
+        shutil.copyfile(existing_weights, weights_path / existing_weights)
 
     print(f"train.py: running {' '.join(subprocess_params)}")
     subprocess.run(subprocess_params)
-    shutil.copyfile("chart.png", str(weights_path / "chart.png"))
-    shutil.copyfile("runs/train/backup/yolo_best.weights", "yolo_best.weights")
+
+    if Path("chart.png").is_file():
+        shutil.copyfile("chart.png", str(weights_path / "chart.png"))
+
 
 if __name__ == "__main__":
     main()
