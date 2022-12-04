@@ -9,8 +9,8 @@ stages:
       size: 5330
     outs:
     - path: data/prepared
-      md5: 7e7d1b0b2a190290e1b766076983dde7.dir
-      size: 4525716
+      md5: 7ee407640f40ae45768529ed5bb1b613.dir
+      size: 4814376
       nfiles: 3
   train:
     cmd: python src/train.py
@@ -19,23 +19,23 @@ stages:
       md5: d863f386f6c521fe47f546c0c5150a4b
       size: 183
     - path: cfg/yolo.cfg
-      md5: ae17bd83939ef4b554d41001611be1a7
-      size: 2794
+      md5: d79a2d16714e3f1063dcf490ecff52d1
+      size: 2796
     - path: data/prepared
-      md5: 7e7d1b0b2a190290e1b766076983dde7.dir
-      size: 4525716
+      md5: 7ee407640f40ae45768529ed5bb1b613.dir
+      size: 4814376
       nfiles: 3
     - path: data/prepared/obj.data
-      md5: 6d38f23bd29c903b02eb379fe084bc34
-      size: 322
+      md5: 621fad766b5d11505313f4c1a20d7a03
+      size: 342
     - path: src/train.py
       md5: a39ba5d6029ce375d56c003ff51c0404
       size: 1316
     outs:
     - path: runs/train/backup
-      md5: 712b61a02dfcd9074a5c463e51fba802.dir
-      size: 418432766
-      nfiles: 13
+      md5: db3087d810a393ab0a82a60c2d2d0d2c.dir
+      size: 592740626
+      nfiles: 18
   make_json:
     cmd: python src/make_json.py
     deps:
@@ -43,22 +43,22 @@ stages:
       md5: d863f386f6c521fe47f546c0c5150a4b
       size: 183
     - path: cfg/yolo.cfg
-      md5: ae17bd83939ef4b554d41001611be1a7
-      size: 2794
+      md5: d79a2d16714e3f1063dcf490ecff52d1
+      size: 2796
     - path: data/prepared/obj.data
-      md5: 6d38f23bd29c903b02eb379fe084bc34
-      size: 322
+      md5: 621fad766b5d11505313f4c1a20d7a03
+      size: 342
     - path: runs/train/backup
-      md5: 712b61a02dfcd9074a5c463e51fba802.dir
-      size: 418432766
-      nfiles: 13
+      md5: db3087d810a393ab0a82a60c2d2d0d2c.dir
+      size: 592740626
+      nfiles: 18
     - path: src/make_json.py
       md5: ee66bb1e3c3754ddfbcd12d2a056b92e
       size: 1073
     outs:
     - path: runs/eval/result.json
-      md5: 029920d516d552776c82e51d1dfd4e05
-      size: 6129249
+      md5: b1cf087467469c98cacb080bec15ae3b
+      size: 6674087
   prepare_gt:
     cmd: python src/make_gt_det.py
     deps:
@@ -66,92 +66,92 @@ stages:
       md5: d863f386f6c521fe47f546c0c5150a4b
       size: 183
     - path: data/prepared/valid.txt
-      md5: bda04bae2eb69ea2ba72550b9dac4349
-      size: 853776
+      md5: d54e334c48eb1de7f6848247d764dfa1
+      size: 907596
     - path: runs/eval/result.json
-      md5: 029920d516d552776c82e51d1dfd4e05
-      size: 6129249
+      md5: b1cf087467469c98cacb080bec15ae3b
+      size: 6674087
     - path: src/make_gt_det.py
       md5: 94f916ad43fc83516cb44a042067b373
       size: 901
     outs:
     - path: runs/eval/pascalvoc_det
-      md5: 438f1800f93352d4702c3ce81b8cd887.dir
-      size: 861421
+      md5: 3e4528db5f5b21a91a225b5b860619f0.dir
+      size: 951336
       nfiles: 13455
     - path: runs/eval/pascalvoc_gt
-      md5: c341b25e3706149f7d8e64377ec2e0b2.dir
-      size: 709873
+      md5: b329ff8da86263b8859968ea3c38f217.dir
+      size: 745595
       nfiles: 13455
   evaluate:
     cmd: python src/evaluate.py
     deps:
     - path: runs/eval/pascalvoc_det
-      md5: 438f1800f93352d4702c3ce81b8cd887.dir
-      size: 861421
+      md5: 3e4528db5f5b21a91a225b5b860619f0.dir
+      size: 951336
       nfiles: 13455
     - path: runs/eval/pascalvoc_gt
-      md5: c341b25e3706149f7d8e64377ec2e0b2.dir
-      size: 709873
+      md5: b329ff8da86263b8859968ea3c38f217.dir
+      size: 745595
       nfiles: 13455
     outs:
     - path: runs/eval/results/axle.json
-      md5: 6798df537fefd5d2df29f5ac53c83d5b
-      size: 973114
+      md5: 602ca582f19e9e3faac5613eb074e1a8
+      size: 1096867
     - path: runs/eval/results/bus.json
-      md5: 29186c298d4c70342621ea228e9e25e4
-      size: 7325
+      md5: 58a7e82f17c3dcc38f58cf673b59c4be
+      size: 8238
     - path: runs/eval/results/car.json
-      md5: f62e37658059b478abafdad49800ec10
-      size: 269273
+      md5: 2a3c1e41f17c48d09c1bfb28f6250bb5
+      size: 288363
     - path: runs/eval/results/car_carrier.json
-      md5: 100d48817212d01e01d9a886f3711335
-      size: 23767
+      md5: 60a68636c27618ef52f0f00786dcbb78
+      size: 33063
     - path: runs/eval/results/car_carrier_trailer.json
-      md5: 2fb7442a0c7958fb3cf40c5ef66b0756
-      size: 68346
+      md5: 3024d847e5ef9007a918fff3fe099700
+      size: 70172
     - path: runs/eval/results/car_trailer.json
-      md5: 44d86638ac1dd18b41a2aa3f97024e6d
-      size: 45513
+      md5: 5286801450bbba8640c2f25f90b05096
+      size: 52153
     - path: runs/eval/results/drawbar.json
-      md5: 1608e7a2f3e47c9780bf29bc4c8e9261
-      size: 12807
+      md5: b57784fb8912df93f395a4e8645e85f7
+      size: 18534
     - path: runs/eval/results/dump_truck_body.json
-      md5: 6a4eb17ea138447db0c85bfbb3ce31e0
-      size: 19787
+      md5: ea0a94c19c218a1a096cc1e9a59457c6
+      size: 22526
     - path: runs/eval/results/motorcycle.json
-      md5: 221a92fbfcc53f721921dc48a99db100
-      size: 111
+      md5: 172303d124aa682a6f947883fe933930
+      size: 194
     - path: runs/eval/results/pickup.json
-      md5: 3789c69336018a0ae9e2eaabd09c8d00
-      size: 128342
+      md5: f2550a7e165ceaf03bd20226d6c7b306
+      size: 126101
     - path: runs/eval/results/platform_trailer.json
-      md5: 5d37bd3fea20f9b7347291eed36ef06f
-      size: 46182
+      md5: 3e1bf92d10db7873781d332994ce0753
+      size: 54482
     - path: runs/eval/results/results.csv
-      md5: 5cade90d6966b474b5a6cdea4b07bdfb
-      size: 1842
+      md5: fd8ccf325cea2e7e47f2b119a7b8cc1b
+      size: 1879
     - path: runs/eval/results/service_vehicle.json
-      md5: 629d789d0ba262271b5e9b5c64a86022
-      size: 21696
+      md5: fca0fd5d242a76e8539cf7e36d05215f
+      size: 22609
     - path: runs/eval/results/tank_trailer.json
-      md5: 57ac06ee11849cfab2277c6195cc607e
-      size: 17128
+      md5: d651fbb4a8f2eb107a55706fe315d996
+      size: 17543
     - path: runs/eval/results/trailer.json
-      md5: 14cd5ac1c356055fc3a5ebd921b038b4
-      size: 149093
+      md5: 17e786aa99d04f2725fb1162c945f6e8
+      size: 161211
     - path: runs/eval/results/trailer.png
-      md5: 3aae8474f71dd00404e5eb01c6909fa4
-      size: 31501
+      md5: 640675e2028fb7eee64f1eeedbc3c589
+      size: 25640
     - path: runs/eval/results/truck.json
-      md5: 79a1d95d4eb52329491931aae81b8079
-      size: 274504
+      md5: f174414066917c26fd50375346f35283
+      size: 302807
     - path: runs/eval/results/truck_cabin.json
-      md5: 785d559425272c87d81b526e0208e84b
-      size: 191842
+      md5: 49d28659985629924e26a0ab92f9eaf9
+      size: 219149
     - path: runs/eval/results/unknown.json
-      md5: 449bbecfe5b61da7a599b7a5bfbc6bbd
+      md5: 072075469cac1e77ca25f019c8dfbb2b
       size: 108
     - path: runs/eval/results/van.json
-      md5: 2aad6323c42e9813dd7015687a4c88bc
-      size: 22846
+      md5: 1852da9b247485708f852bb1d13cba4d
+      size: 26747
