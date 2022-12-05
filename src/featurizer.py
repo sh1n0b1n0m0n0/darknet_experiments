@@ -7,7 +7,7 @@ from inexlib.object_detection.darknet import to_darknet_config_file, from_darkne
 def change_darknet_config_params(cfg_path: Path, params_names, params):
 
     def find_index(cfg_lst, parameter):
-        return [cfg_lst[0].index(i) for i in cfg_lst[0] if str(parameter) in i][0]
+        return [cfg_lst[0].index(i) for i in cfg_lst[0] if (str(parameter) in i) and ("#" not in i)][0]
 
     cfg_list = from_darknet_config_file(cfg_path)
     for name in tqdm(params_names):
@@ -32,7 +32,8 @@ def main():
                     "decay",
                     "learning_rate",
                     "max_batches",
-                    "burn_in"]
+                    "burn_in",
+                    "policy"]
 
     print(f"Rewriting {cfg_file_path}...")
     cfg_list = change_darknet_config_params(cfg_file_path, params_names, params)
