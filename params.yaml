@@ -46,3 +46,15 @@ prepare:
   thresh: 0.5
   use_default_train_valid: True
   remove_small_boxes: True
+
+  # darknet parameters
+  batch: 64
+  subdivisions: 64
+  width: 416
+  height: 416
+  channels: 3
+  momentum: 0.9
+  decay: 0.0005
+  learning_rate: 0.01
+  max_batches: 100000
+  burn_in: 1000
