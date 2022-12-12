@@ -4,6 +4,25 @@ stages:
     deps:
       - src/prepare.py
       - cfg/yolo.cfg
+    params:
+      - prepare.datasets
+      - prepare.train_size
+      - prepare.seed
+      - prepare.classes
+      - prepare.thresh
+      - prepare.use_default_train_valid
+      - prepare.remove_small_boxes
+      - prepare.batch
+      - prepare.subdivisions
+      - prepare.width
+      - prepare.height
+      - prepare.channels
+      - prepare.momentum
+      - prepare.decay
+      - prepare.learning_rate
+      - prepare.max_batches
+      - prepare.burn_in
+      - prepare.policy
     outs:
       - data/prepared
 
@@ -47,7 +66,7 @@ stages:
       - runs/eval/pascalvoc_det
 
     metrics:
-      - runs/eval/results/results.csv:
+      - runs/eval/results/evaluate.json:
           cache: false
 
     plots:
@@ -141,4 +160,5 @@ stages:
           x: recall
           y: precision
 
-      - runs/eval/results/results.png
+      - runs/eval/results/results_rpa.png
+      - runs/eval/results/results_tfpn.png
