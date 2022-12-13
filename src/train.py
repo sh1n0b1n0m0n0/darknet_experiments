@@ -11,14 +11,14 @@ import shutil
 def main():
     if not os.environ.get("DN_BIN"):
         raise Exception("please specify DN_BIN env variable that points to compiled darknet")
-    darknet_path = os.environ["DN_BIN"] + "/darknet"
+    darknet_path = os.environ["DN_BIN"]
 
     paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["train"]
 
     weights_path = Path("runs/train/backup/")
     weights_path.mkdir(parents=True, exist_ok=True)
 
-    subprocess_params = [darknet_path,
+    subprocess_params = [darknet_path + "/darknet",
         "detector",
         "train",
         "-dont_show",
