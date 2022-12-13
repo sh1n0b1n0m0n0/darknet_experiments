@@ -1,10 +1,31 @@
 stages:
   prepare:
-    cmd: python src/darknet_train_helper/remove_all_small_boxes.py && python src/prepare.py && python src/check_datasets.py
+    cmd: python src/darknet_train_helper/remove_all_small_boxes.py && python src/prepare.py && python src/check_datasets.py && python src/featurizer.py
     deps:
       - src/prepare.py
+      - cfg/yolo.cfg
+    params:
+      - prepare.datasets
+      - prepare.train_size
+      - prepare.seed
+      - prepare.classes
+      - prepare.thresh
+      - prepare.use_default_train_valid
+      - prepare.remove_small_boxes
+      - prepare.batch
+      - prepare.subdivisions
+      - prepare.width
+      - prepare.height
+      - prepare.channels
+      - prepare.momentum
+      - prepare.decay
+      - prepare.learning_rate
+      - prepare.max_batches
+      - prepare.burn_in
+      - prepare.policy
     outs:
       - data/prepared
+
   train:
     cmd: python src/train.py
     deps:
@@ -15,6 +36,7 @@ stages:
       - cfg/yolo.cfg
     outs:
       - runs/train/backup
+
   make_json:
     cmd: python src/make_json.py
     deps:
@@ -25,6 +47,7 @@ stages:
       - runs/train/backup
     outs:
       - runs/eval/result.json
+
   prepare_gt:
     cmd: python src/make_gt_det.py
     deps:
@@ -35,6 +58,7 @@ stages:
     outs:
       - runs/eval/pascalvoc_gt
       - runs/eval/pascalvoc_det
+
   evaluate:
     cmd: python src/evaluate.py
     deps:
@@ -42,7 +66,7 @@ stages:
       - runs/eval/pascalvoc_det
 
     metrics:
-      - runs/eval/results/results.csv:
+      - runs/eval/results/evaluate.json:
           cache: false
 
     plots:
@@ -135,6 +159,6 @@ stages:
           title: van
           x: recall
           y: precision
-      
 
-      - runs/eval/results/trailer.png
+      - runs/eval/results/results_rpa.png
+      - runs/eval/results/results_tfpn.png
