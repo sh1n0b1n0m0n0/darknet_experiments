@@ -34,7 +34,6 @@ def main():
         shutil.copyfile(existing_weights, weights_path / existing_weights)
 
     print(f"train.py: running {' '.join(subprocess_params)}")
-    subprocess.run(["ln", "-s", "data", darknet_path + "/data"])
     subprocess.run(subprocess_params)
 
     if Path("chart.png").is_file():
