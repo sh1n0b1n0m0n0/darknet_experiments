@@ -24,7 +24,9 @@ def main():
         "-dont_show",
         "-map",
         paths['obj_data'],
-        paths['cfg']
+        paths['cfg'],
+        "-chart_size",
+        "3000"
     ]
 
     existing_weights = Path("yolo_best.weights")
@@ -34,7 +36,7 @@ def main():
         shutil.copyfile(existing_weights, weights_path / existing_weights)
 
     print(f"train.py: running {' '.join(subprocess_params)}")
-    subprocess.run(["ln", "-s", "data", darknet_path + "/data"])
+    # subprocess.run(["ln", "-s", "data", darknet_path + "/data"])
     subprocess.run(subprocess_params)
 
     if Path("chart.png").is_file():
