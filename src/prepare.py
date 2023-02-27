@@ -101,7 +101,7 @@ def main():
             for img in df_valid_list:
                 f.write(str(img))
 
-        make_obj_data_file(prepared_path, backup_path, 18)
+        make_obj_data_file(prepared_path, backup_path, 20)
 
         print(f"train size:{train_size} seed:{seed}\n")
     else:
