@@ -23,6 +23,8 @@ stages:
       - prepare.max_batches
       - prepare.burn_in
       - prepare.policy
+      - prepare.scales
+      - prepare.steps
     outs:
       - data/prepared
 

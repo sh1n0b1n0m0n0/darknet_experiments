@@ -1,61 +1,82 @@
 prepare:
-  datasets: [80, 
-             81, 
-             82, 
-             115, 
-             116, 
-             118, 
-             123, 
-             149, 
-             283, 
-             284, 
-             287, 
-             288, 
-             290, 
-             298, 
-             299, 
-             300, 
-             301, 
-             302, 
-             303, 
-             234, 
-             146, 
-             242, 
-             309, 
-             310, 
-             311, 
-             312, 
-             313, 
-             314, 
-             291, 
-             294, 
-             304, 
-             305, 
-             306, 
-             307, 
-             308, 
-             296, 
-             "empty_31",
-             "empty_36",
-             "empty_37",
-             "empty_39",
-             "empty_41"]
-  train_size: 0.80
-  seed: 0
-  classes: [truck_cabin, tank_trailer, car_carrier, car_trailer, car_carrier_trailer, trailer, platform_trailer, car, motorcycle, bus, truck, pickup, axle, unknown, van, dump_truck_body, service_vehicle, drawbar, grill, windshield]
-  thresh: 0.5
-  use_default_train_valid: True
-  remove_small_boxes: True
-
-  # darknet parameters
   batch: 64
-  subdivisions: 64
-  width: 416
-  height: 416
-  channels: 3
-  momentum: 0.9
-  decay: 0.0005
-  learning_rate: 0.001
-  max_batches: 100000
   burn_in: 1000
-  policy: "sgdr"
+  channels: 3
+  classes:
+  - truck_cabin
+  - tank_trailer
+  - car_carrier
+  - car_trailer
+  - car_carrier_trailer
+  - trailer
+  - platform_trailer
+  - car
+  - motorcycle
+  - bus
+  - truck
+  - pickup
+  - axle
+  - unknown
+  - van
+  - dump_truck_body
+  - service_vehicle
+  - drawbar
+  - grill
+  - windshield
+  datasets:
+  - 80
+  - 81
+  - 82
+  - 115
+  - 116
+  - 118
+  - 123
+  - 149
+  - 283
+  - 284
+  - 287
+  - 288
+  - 290
+  - 298
+  - 299
+  - 300
+  - 301
+  - 302
+  - 303
+  - 234
+  - 146
+  - 242
+  - 309
+  - 310
+  - 311
+  - 312
+  - 313
+  - 314
+  - 291
+  - 294
+  - 304
+  - 305
+  - 306
+  - 307
+  - 308
+  - 296
+  - empty_31
+  - empty_36
+  - empty_37
+  - empty_39
+  - empty_41
+  decay: 0.0005
+  height: 416
+  learning_rate: 0.01
+  max_batches: 400000
+  momentum: 0.9
+  policy: sgdr
+  remove_small_boxes: true
+  scales: 2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5
+  seed: 0
+  steps: 917,10090,19263,28435,37608,46781,55953,65126,74299,83471,92644,101816,110989,120162,129334,138507,147680,156852,166025,175198,184370,193543,202716,211888,221061,230234,239406,248579,257752,266924,276097,285270,294442,303615,312788,321960,331133,340306,349478,358651,367824,376996,386169,395341
+  subdivisions: 2
+  thresh: 0.5
+  train_size: 0.8
+  use_default_train_valid: true
+  width: 416
