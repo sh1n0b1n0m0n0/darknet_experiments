@@ -1,0 +1,5 @@
+outs:
+- md5: f3e786b53b167196657ace92b3b46b7d.dir
+  size: 104954856
+  nfiles: 7
+  path: old_train
