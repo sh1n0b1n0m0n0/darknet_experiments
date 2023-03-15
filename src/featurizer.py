@@ -19,7 +19,8 @@ def change_darknet_config_params(cfg_path: Path, params_names, params):
 
 
 def change_sgdr_policy_with_steps(max_batches, batch, n_img_in_trainset):
-    pattern = [2.0, 2.0, 0.5, 0.5, 0.1]
+    #pattern = [2.0, 2.0, 0.5, 0.5, 0.1, 2.0, 0.5, 0.5, 10]
+    pattern = [1.5, 1.25, 0.75, 0.5, 0.25, 3.0]
 
     max_epochs = round((max_batches * batch) / n_img_in_trainset) + 1
     iter_in_epoch = n_img_in_trainset / batch
@@ -60,11 +61,12 @@ def main():
     assert trainset_path.is_file()
     assert validset_path.is_file()
 
-    trainset_length = dataset_length(trainset_path)
-    policy_sgdr = change_sgdr_policy_with_steps(params["max_batches"], params["batch"], trainset_length)
-    add_to_params_yaml(Path("params.yaml"), policy_sgdr)
-    # reopen params
-    params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["prepare"]
+    if params["policy"] == "steps":
+        trainset_length = dataset_length(trainset_path)
+        policy_sgdr = change_sgdr_policy_with_steps(params["max_batches"], params["batch"], trainset_length)
+        add_to_params_yaml(Path("params.yaml"), policy_sgdr)
+        # re-open params
+        params = yaml.safe_load(open(Path.cwd() / Path("params.yaml")))["prepare"]
     
     params_names = ["batch",
                     "subdivisions",
@@ -75,10 +77,7 @@ def main():
                     "decay",
                     "learning_rate",
                     "max_batches",
-                    "burn_in",
-                    "policy",
-                    "steps", 
-                    "scales"]
+                    "burn_in"]
     
     print(f"Rewriting {cfg_file_path}...")
     cfg_list = change_darknet_config_params(cfg_file_path, params_names, params)

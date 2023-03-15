@@ -1,0 +1,150 @@
+datasets_folder: /home/alexsh/darknet_experiments/data
+
+classes:
+- truck_cabin
+- tank_trailer
+- car_carrier
+- car_trailer
+- car_carrier_trailer
+- trailer
+- platform_trailer
+- car
+- motorcycle
+- bus
+- truck
+- pickup
+- axle
+- unknown
+- van
+- dump_truck_body
+- service_vehicle
+- drawbar
+- grill
+- windshield  
+
+cvat_tasks:
+  nysta:
+  - id: 80
+    desc: NYSTA trucks RV cam
+  - id: 81
+    desc: NYSTA trucks OV cam
+  - id: 82
+    desc: NYSTA trucks night RV cam
+  - id: 115
+    desc: NYSTA common traffic (color cam)
+  - id: 116
+    desc: NYSTA common traffic (color cam)
+  - id: 118
+    desc: NYSTA_2020-10-17_night_day
+  - id: 123
+    desc: NYSTA snow 2020-10-30
+  - id: 149
+    desc: NYSTA yolo "bad" events
+  - id: 283
+    desc: NYSTA 2021-12 (2085 imgs)
+  - id: 284
+    desc: NYSTA 2021-11 (2857 imgs)
+  - id: 287
+    desc: NYSTA 2021-12-27_29 (2988 imgs)
+  - id: 288
+    desc: NYSTA 2022-01-03_bad_axles (1189 imgs)
+  - id: 290
+    desc: NYSTA 2022-01-04_09 service vehicles (1638 imgs)
+  - id: 298
+    desc: NYSTA 2022-06-28_30_trailers (1329 imgs)
+  - id: 299
+    desc: NYSTA 2022-07-01_05_trailers (1432 imgs)
+  - id: 300
+    desc: NYSTA 2022-07-07_10_trailers (1225 imgs)
+  - id: 301
+    desc: NYSTA 2022-07-11_13_trailers (1781 imgs)
+  - id: 302
+    desc: NYSTA 2022-07-14_16_trailers (1440 imgs)
+  - id: 303
+    desc: NYSTA 2022-07-17_20_trailers (1176 imgs)
+
+  nysta_axle_cam:
+  - id: 234
+    desc: NYSTA axles (low quality) 2021-08
+
+  colorado:
+  - id: 146
+    desc: COLORADO single lane vehicles and axles (3.9k imgs)
+
+  ade:
+  - id: 142
+    desc: ade20k subset, with vehicles and axles
+
+  nfb_front:
+  - id: 242
+    desc: NFB_front_cam (1k imgs (low quality))
+  - id: 309
+    desc: NFB_front_cam 2022-08-02_1 (1060 imgs)
+  - id: 310
+    desc: NFB_front_cam 2022-08-02_2 (1068 imgs)
+  - id: 311
+    desc: NFB_front_cam 2022-08-02_3 (1071 imgs)
+  - id: 312
+    desc: NFB_front_cam 2022-08-02_4 (1016 imgs)
+  - id: 313
+    desc: NFB_front_cam 2022-08-02_5 (1022 imgs)
+  - id: 314
+    desc: NFB_front_cam 2022-08-02_6 (1026 imgs)
+
+
+  nfb_rear:
+  - id: 291
+    desc: NFB_rear_cam 2021-08
+  - id: 294
+    desc: NFB_rear_cam 2022-02
+  - id: 304
+    desc: NFB_rear_cam 2022-08-02_1 (1003 imgs)
+  - id: 305
+    desc: NFB_rear_cam 2022-08-02_2 (1004 imgs)
+  - id: 306
+    desc: NFB_rear_cam 2022-08-02_3 (1017 imgs)
+  - id: 307
+    desc: NFB_rear_cam 2022-08-02_4 (1003 imgs)
+  - id: 308
+    desc: NFB_rear_cam 2022-08-02_5 (1015 imgs)
+
+  crofton:
+  - id: 296
+    desc: crofton_2022-02 (252 imgs)
+  - id: 315
+    desc: crofton_2022-10-25_noon_1920_1080_1 (1063 imgs)
+  - id: 316
+    desc: crofton_2022-10-25_noon_1920_1080_2 (1186 imgs)
+  - id: 317
+    desc: crofton_2022-10-25_night_1920_1080 (925 imgs)
+  - id: 318
+    desc: crofton_2022-10-25_night_1280_720 (1059 imgs)
+
+empty_frames:
+  nysta:
+  - id: empty_31
+    desc: empty frames from NYSTA
+  - id: 36
+    desc:
+
+  nysta_axle_cam:
+  - id: empty_33
+    desc: empty frames from NYSTA axle cam
+
+  nfb_front:
+  - id: empty_37
+    desc: empty nfb front (1k imgs)
+
+  nfb_rear:
+  - id: empty_39
+    desc: empty nfb rear (1k imgs)
+  - id: empty_44
+    desc: empty nfb rear day and night
+
+  crofton:
+  - id: empty_41
+    desc: empty crofton (549 imgs)
+  - id: empty_42
+    desc: empty crofton (1000 imgs)
+  - id: empty_43
+    desc: empty crofton (1000 imgs)

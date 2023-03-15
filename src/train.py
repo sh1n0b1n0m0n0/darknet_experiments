@@ -29,7 +29,7 @@ def main():
         paths['obj_data'],
         paths['cfg'],
         "/home/alexsh/darknet_experiments/runs/yolo_last.weights",
-        "-gpus", " 0,1"
+        "-gpus", "0,1"
     ]
 
     existing_weights = Path("yolo_best.weights")

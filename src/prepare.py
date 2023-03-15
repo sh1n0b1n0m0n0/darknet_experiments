@@ -57,6 +57,8 @@ def main():
     datasets = params["datasets"]
     train_size = params["train_size"]
     seed = params["seed"]
+    classes = params["classes"]
+
     datasets_path = 'data'
     prepared_path = Path(datasets_path) / Path('prepared')
     prepared_dir = Path.cwd() / prepared_path
@@ -101,7 +103,7 @@ def main():
             for img in df_valid_list:
                 f.write(str(img))
 
-        make_obj_data_file(prepared_path, backup_path, 20)
+        make_obj_data_file(prepared_path, backup_path, len(classes))
 
         print(f"train size:{train_size} seed:{seed}\n")
     else:
@@ -122,7 +124,7 @@ def main():
         train_set_list = df_train["imgs"].tolist()
         valid_set_list = df_valid["imgs"].tolist()
 
-        make_obj_data_file(prepared_path, backup_path, 18)
+        make_obj_data_file(prepared_path, backup_path, len(classes))
 
         with open(str(train_txt_dir), "w") as f:
             for img in train_set_list:
