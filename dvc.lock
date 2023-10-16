@@ -5,14 +5,14 @@ stages:
       && python src/check_datasets.py && python src/featurizer.py
     deps:
     - path: cfg/yolo.cfg
-      md5: af72dccebb7166806e89df98e63455b5
-      size: 2695
+      md5: a9b0ddf663a0a03c6454c3283bdd39c8
+      size: 2699
     - path: src/prepare.py
-      md5: 9cd45de7a40e1650124b121edfb05e28
-      size: 4412
+      md5: e0e4db90c4067a0df1f1ed553709adf1
+      size: 4465
     params:
       params.yaml:
-        prepare.batch: 64
+        prepare.batch: 96
         prepare.burn_in: 1000
         prepare.channels: 3
         prepare.classes:
@@ -44,40 +44,59 @@ stages:
         - 116
         - 118
         - 123
+        - 146
         - 149
+        - 173
+        - 234
+        - 242
         - 283
         - 284
         - 287
         - 288
         - 290
+        - 291
+        - 294
+        - 296
         - 298
         - 299
         - 300
         - 301
         - 302
         - 303
-        - 234
-        - 146
-        - 242
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
         - 309
         - 310
         - 311
         - 312
         - 313
         - 314
-        - 291
-        - 294
-        - 304
-        - 305
-        - 306
-        - 307
-        - 308
-        - 296
+        - 315
+        - 316
+        - 317
+        - 318
+        - 332
+        - 333
+        - 334
+        - 335
+        - 336
+        - 342
+        - 343
+        - 344
+        - 345
+        - 349
         - empty_31
         - empty_36
         - empty_37
         - empty_39
         - empty_41
+        - empty_42
+        - empty_43
+        - empty_44
+        - empty_45
         prepare.decay: 0.0005
         prepare.height: 416
         prepare.learning_rate: 0.01
@@ -85,18 +104,18 @@ stages:
         prepare.momentum: 0.9
         prepare.policy: sgdr
         prepare.remove_small_boxes: true
-        prepare.scales: 2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5,0.1,2.0,2.0,0.5,0.5
+        prepare.scales: 2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0,2.0,0.5,0.5,0.1,2.0,0.5,0.5,10,2.0
         prepare.seed: 0
         prepare.steps: 917,10090,19263,28435,37608,46781,55953,65126,74299,83471,92644,101816,110989,120162,129334,138507,147680,156852,166025,175198,184370,193543,202716,211888,221061,230234,239406,248579,257752,266924,276097,285270,294442,303615,312788,321960,331133,340306,349478,358651,367824,376996,386169,395341
-        prepare.subdivisions: 2
+        prepare.subdivisions: 1
         prepare.thresh: 0.5
         prepare.train_size: 0.8
         prepare.use_default_train_valid: true
         prepare.width: 416
     outs:
     - path: data/prepared
-      md5: ed71bef886e6f4cb3d61e5dc3e7bb511.dir
-      size: 2144271
+      md5: ee18aa98aef8d03ffdf3215dfa585ede.dir
+      size: 2691476
       nfiles: 3
   train:
     cmd: python src/train.py
@@ -105,23 +124,23 @@ stages:
       md5: 8675ae2aa4f38533d1cc9c175de3d498
       size: 200
     - path: cfg/yolo.cfg
-      md5: af72dccebb7166806e89df98e63455b5
-      size: 2695
+      md5: 106037ecc609a11076a9be0505cb0d4c
+      size: 2700
     - path: data/prepared
-      md5: ed71bef886e6f4cb3d61e5dc3e7bb511.dir
-      size: 2144271
+      md5: ee18aa98aef8d03ffdf3215dfa585ede.dir
+      size: 2691476
       nfiles: 3
     - path: data/prepared/obj.data
       md5: fa750f0061b824c99b5a9c9fed691c8b
       size: 157
     - path: src/train.py
-      md5: 193e4c0e1e484d31977cc5f708e8be41
-      size: 1562
+      md5: 01465f987b28a0c27d1e2aa92e0a5a7d
+      size: 1554
     outs:
     - path: runs/train/backup
-      md5: 1a276c5e739c528c1a75cc22d6461ed4.dir
-      size: 74316
-      nfiles: 1
+      md5: efbcd4ce2f8ed9b3e699f5608ca7b878.dir
+      size: 34950179
+      nfiles: 2
   make_json:
     cmd: python src/make_json.py
     deps:
@@ -129,19 +148,118 @@ stages:
       md5: 8675ae2aa4f38533d1cc9c175de3d498
       size: 200
     - path: cfg/yolo.cfg
-      md5: af72dccebb7166806e89df98e63455b5
-      size: 2695
+      md5: 106037ecc609a11076a9be0505cb0d4c
+      size: 2700
     - path: data/prepared/obj.data
       md5: fa750f0061b824c99b5a9c9fed691c8b
       size: 157
     - path: runs/train/backup
-      md5: c628888de949f8518c00198be90886b1.dir
-      size: 104715984
-      nfiles: 4
+      md5: efbcd4ce2f8ed9b3e699f5608ca7b878.dir
+      size: 34950179
+      nfiles: 2
     - path: src/make_json.py
       md5: ee66bb1e3c3754ddfbcd12d2a056b92e
       size: 1073
     outs:
     - path: runs/eval/result.json
-      md5: ee2da63e5b2b78a500305cee471edd63
-      size: 7448486
+      md5: 91f5cbc6fc7dc7e042b52830e74cd0e5
+      size: 10965639
+  prepare_gt:
+    cmd: python src/make_gt_det.py
+    deps:
+    - path: cfg/obj.names
+      md5: 8675ae2aa4f38533d1cc9c175de3d498
+      size: 200
+    - path: data/prepared/valid.txt
+      md5: 3de19ecc7a42074fe6ecf6e439688a62
+      size: 546300
+    - path: runs/eval/result.json
+      md5: 91f5cbc6fc7dc7e042b52830e74cd0e5
+      size: 10965639
+    - path: src/make_gt_det.py
+      md5: 94f916ad43fc83516cb44a042067b373
+      size: 901
+    outs:
+    - path: runs/eval/pascalvoc_det
+      md5: 0694aca356b8dd3c2be4b32f7bc8fec5.dir
+      size: 1788399
+      nfiles: 20090
+    - path: runs/eval/pascalvoc_gt
+      md5: 688a6dcd6a2fa773d52b6954ed8320d5.dir
+      size: 1486927
+      nfiles: 20090
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - path: runs/eval/pascalvoc_det
+      md5: 0694aca356b8dd3c2be4b32f7bc8fec5.dir
+      size: 1788399
+      nfiles: 20090
+    - path: runs/eval/pascalvoc_gt
+      md5: 688a6dcd6a2fa773d52b6954ed8320d5.dir
+      size: 1486927
+      nfiles: 20090
+    outs:
+    - path: runs/eval/results/axle.json
+      md5: 633b60dcb4c63ec77a53de6082b004fd
+      size: 1719367
+    - path: runs/eval/results/bus.json
+      md5: 8edf14fc552a97375ae6d2e8583e9603
+      size: 9400
+    - path: runs/eval/results/car.json
+      md5: 48cd9c776b31e9a38e77277eb16940ca
+      size: 397757
+    - path: runs/eval/results/car_carrier.json
+      md5: 4d117ad139e09da8cef6bd8fcf1c6409
+      size: 49663
+    - path: runs/eval/results/car_carrier_trailer.json
+      md5: daa1ecb40039b1f4e1ab15120ce22d2e
+      size: 91586
+    - path: runs/eval/results/car_trailer.json
+      md5: 4bed5964aa7cf08b5162648b53b417fb
+      size: 62113
+    - path: runs/eval/results/drawbar.json
+      md5: c2cd6b5070d102baae5e1f85c409e410
+      size: 23431
+    - path: runs/eval/results/dump_truck_body.json
+      md5: 4292acabaf534321260bdac56e7f6591
+      size: 25182
+    - path: runs/eval/results/evaluate.json
+      md5: 4b561472a36d50a60b0a5e93af6be2df
+      size: 2020
+    - path: runs/eval/results/motorcycle.json
+      md5: 6c3d871762ca97069ccda528fee6f168
+      size: 277
+    - path: runs/eval/results/pickup.json
+      md5: 0d4dc6306057d414b3aca3e27d699eec
+      size: 149424
+    - path: runs/eval/results/platform_trailer.json
+      md5: 71a3632e4e29a8b711b0823795a5e909
+      size: 91666
+    - path: runs/eval/results/results_rpa.png
+      md5: 2b4815ecc7dfbb8bfe10c85e065f672e
+      size: 59550
+    - path: runs/eval/results/results_tfpn.png
+      md5: bbf33972b67538e592326dcd8ff3bd10
+      size: 64907
+    - path: runs/eval/results/service_vehicle.json
+      md5: 9bae3e34b12c30f246e2b42488baa41a
+      size: 24269
+    - path: runs/eval/results/tank_trailer.json
+      md5: bd24bb2a1952d6399ff16222cae7a9fb
+      size: 58711
+    - path: runs/eval/results/trailer.json
+      md5: 51348f3d253fd2e8e5f02319519be509
+      size: 203707
+    - path: runs/eval/results/truck.json
+      md5: 9f6b24e87e68c2ac5d37fdae17ff6474
+      size: 533298
+    - path: runs/eval/results/truck_cabin.json
+      md5: 82f0ce6d13e02f2889c8321a10ab56af
+      size: 352779
+    - path: runs/eval/results/unknown.json
+      md5: d445cdb19ac0af80787b91bbbce570bc
+      size: 274
+    - path: runs/eval/results/van.json
+      md5: 5221a85a1fc189422a8076b1ac125445
+      size: 37454

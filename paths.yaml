@@ -1,12 +1,21 @@
 check:
   train_txt: data/prepared/train.txt
   valid_txt: data/prepared/valid.txt
+  test_txt: data/prepared/test.txt
 
 train:
   cfg: cfg/yolo.cfg
   obj_data: data/prepared/obj.data
   obj_names: cfg/obj.names
   datasets_root: data
+
+predict:
+  cfg: cfg/yolo.cfg
+  obj_data: data/prepared/obj.data
+  obj_names: cfg/obj.names
+  weights: runs/train/backup/yolo_best.weights
+  pred_image: predictions.jpg
+  test_txt: data/prepared/test.txt
 
 evaluate:
   gt_path: runs/eval/pascalvoc_gt

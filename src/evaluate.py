@@ -19,9 +19,9 @@ def main():
         "-gt",
         str(cwd / paths["gt_path"]),
         "-det",
-        str(cwd /  paths["det_path"]),
+        str(cwd / paths["det_path"]),
         "-sp",
-        str(cwd /  paths["save_path"]),
+        str(cwd / paths["save_path"]),
         "--noplot"
     ])
 

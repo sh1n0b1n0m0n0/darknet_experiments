@@ -8,7 +8,7 @@ import os
 import shutil
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"]="0,1"  # specify which GPU(s) to be used
+os.environ["CUDA_VISIBLE_DEVICES"]="0"  # specify which GPU(s) to be used
 
 
 def main():
@@ -28,8 +28,7 @@ def main():
         "-map",
         paths['obj_data'],
         paths['cfg'],
-        "/home/alexsh/darknet_experiments/runs/yolo_last.weights",
-        "-gpus", "0,1"
+        '/home/alexsh/darknet_experiments/runs/train/backup/yolo_best.weights'
     ]
 
     existing_weights = Path("yolo_best.weights")

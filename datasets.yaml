@@ -1,26 +1,26 @@
 datasets_folder: /home/alexsh/darknet_experiments/data
 
 classes:
-- truck_cabin
-- tank_trailer
-- car_carrier
-- car_trailer
-- car_carrier_trailer
-- trailer
-- platform_trailer
-- car
-- motorcycle
-- bus
-- truck
-- pickup
-- axle
-- unknown
-- van
-- dump_truck_body
-- service_vehicle
-- drawbar
-- grill
-- windshield  
+  - truck_cabin
+  - tank_trailer
+  - car_carrier
+  - car_trailer
+  - car_carrier_trailer
+  - trailer
+  - platform_trailer
+  - car
+  - motorcycle
+  - bus
+  - truck
+  - pickup
+  - axle
+  - van
+  - dump_truck_body
+  - service_vehicle
+  - drawbar
+  - grill
+  - windshield
+  - motorcyclist
 
 cvat_tasks:
   nysta:
@@ -62,7 +62,23 @@ cvat_tasks:
     desc: NYSTA 2022-07-14_16_trailers (1440 imgs)
   - id: 303
     desc: NYSTA 2022-07-17_20_trailers (1176 imgs)
-
+  - id: 367
+    desc: NYSTA_2023-07-07_motocycles_1 (433 imgs)
+  - id: 368
+    desc: NYSTA_2023-07-07_motocycles_2 (500 imgs)
+  - id: 369
+    desc: NYSTA_2023-07-07_cartrailers_1 (1129 imgs)
+  - id: 370
+    desc: NYSTA_2023-07-07_cartrailers_2 (1308 imgs)
+  - id: 371
+    desc: NYSTA_2023-07-07_cartrailers_3 (1231 imgs)
+  - id: 372
+    desc: NYSTA_2023-07-07_cartrailers_4 (1074 imgs)
+  - id: 373
+    desc: NYSTA_2023-07-07_cartrailers_5 (1264 imgs)
+  - id: 374
+    desc: NYSTA_2023-07-19_motocycles (835 imgs)
+    
   nysta_axle_cam:
   - id: 234
     desc: NYSTA axles (low quality) 2021-08
@@ -71,9 +87,9 @@ cvat_tasks:
   - id: 146
     desc: COLORADO single lane vehicles and axles (3.9k imgs)
 
-  ade:
-  - id: 142
-    desc: ade20k subset, with vehicles and axles
+  # ade:
+  # - id: 142
+  #   desc: ade20k subset, with vehicles and axles
 
   nfb_front:
   - id: 242
@@ -90,7 +106,12 @@ cvat_tasks:
     desc: NFB_front_cam 2022-08-02_5 (1022 imgs)
   - id: 314
     desc: NFB_front_cam 2022-08-02_6 (1026 imgs)
-
+  - id: 332
+    desc: NFB_front_cam 2022-02-10 (2334 imgs)
+  - id: 342
+    desc: NFB_front_cam_2023-04-14 (2209 imgs)
+  - id: 343
+    desc: NFB_front_cam_2023-04-14_bad (515 imgs)
 
   nfb_rear:
   - id: 291
@@ -107,6 +128,18 @@ cvat_tasks:
     desc: NFB_rear_cam 2022-08-02_4 (1003 imgs)
   - id: 308
     desc: NFB_rear_cam 2022-08-02_5 (1015 imgs)
+  - id: 333
+    desc: NFB_rear_cam 2022-02-10 (2665 imgs)
+  - id: 334
+    desc: NFB_rear_cam_2023-03-14_1 (1840 imgs)
+  - id: 335
+    desc: NFB_rear_cam_2023-03-14_2 (1150 imgs)
+  - id: 336
+    desc: NFB_rear_cam_2023-03-14_3 (2250 imgs)
+  - id: 344
+    desc: NFB_rear_cam_2023-04-14 (1235 imgs)
+  - id: 345
+    desc: NFB_rear_cam_2023-04-14_bad (100 imgs)
 
   crofton:
   - id: 296
@@ -120,11 +153,49 @@ cvat_tasks:
   - id: 318
     desc: crofton_2022-10-25_night_1280_720 (1059 imgs)
 
+  twinforks:
+  - id: 173
+    desc: twinforks_day_2_1 (999 imgs)
+  - id: cropped_349
+    desc: twinforks_day_2_2 (1006 imgs)
+  - id: cropped_350
+    desc: twinforks_day_2_3 (1000 imgs)
+  - id: cropped_351
+    desc: twinforks_day_2_4 (1009 imgs)
+  - id: cropped_352
+    desc: twinforks_day_2_5 (1021 imgs)
+  - id: cropped_353
+    desc: twinforks_day_2_6 (1090 imgs)
+  - id: cropped_354
+    desc: twinforks_evening_1 (1118 imgs)
+  - id: cropped_355
+    desc: twinforks_evening_2 (1204 imgs)
+  - id: cropped_356
+    desc: twinforks_evening_3 (1000 imgs)
+  - id: cropped_357
+    desc: twinforks_evening_4 (1047 imgs)
+  - id: cropped_358
+    desc: twinforks_evening_5 (1001 imgs)
+  - id: cropped_359
+    desc: twinforks_evening_6 (1026 imgs)
+  - id: cropped_360
+    desc: twinforks_morning_1 (1010 imgs)
+  - id: cropped_361
+    desc: twinforks_morning_2 (1027 imgs)
+  - id: cropped_362
+    desc: twinforks_morning_3 (1019 imgs)
+  - id: cropped_363
+    desc: twinforks_morning_4 (1054 imgs)
+  - id: cropped_364
+    desc: twinforks_morning_5 (1025 imgs)
+  - id: cropped_365
+    desc: twinforks_morning_6 (1081 imgs)
+
 empty_frames:
   nysta:
   - id: empty_31
     desc: empty frames from NYSTA
-  - id: 36
+  - id: empty_36
     desc:
 
   nysta_axle_cam:
@@ -148,3 +219,7 @@ empty_frames:
     desc: empty crofton (1000 imgs)
   - id: empty_43
     desc: empty crofton (1000 imgs)
+  
+  twinforks:
+  - id: empty_45
+    desc: empty twinforks (3000 imgs)
