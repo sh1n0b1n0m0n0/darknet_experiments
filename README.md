@@ -2,15 +2,10 @@
 Pipeline for Darknet
 ### Dependencies:
 ```bash
-git clone https://github.com/IZDEVELOPER-ORG/Object-Detection-Metrics.git
-```
-```bash
-git clone https://github.com/IZDEVELOPER-ORG/roadview_research.git
-```
-```bash
-git clone https://github.com/sh1n0b1n0m0n0/darknet_train_helper.git
+git submodule update --init --recursive
 ```
 export PATH=./venv/bin:$PATH
+export DN_BIN= "your PATH to darknet directory"
 ### Commands:
 ```bash
 dvc repro
