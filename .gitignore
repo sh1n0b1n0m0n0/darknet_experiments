@@ -9,6 +9,7 @@
 !/data/labels
 /data_old
 /old_train
+/pretrained
 /src/rv_yolo_5cls
 *.list
 *.jp*g

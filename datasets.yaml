@@ -81,7 +81,7 @@ cvat_tasks:
     
   nysta_axle_cam:
   - id: 234
-    desc: NYSTA axles (low quality) 2021-08
+    desc: NYSTA axles (low quality) 2021-08 (1312 imgs)
 
   colorado:
   - id: 146
@@ -112,6 +112,8 @@ cvat_tasks:
     desc: NFB_front_cam_2023-04-14 (2209 imgs)
   - id: 343
     desc: NFB_front_cam_2023-04-14_bad (515 imgs)
+  - id: 438
+    desc: NFB_front_cam_2023-10-09 (919 imgs)
 
   nfb_rear:
   - id: 291
@@ -140,6 +142,8 @@ cvat_tasks:
     desc: NFB_rear_cam_2023-04-14 (1235 imgs)
   - id: 345
     desc: NFB_rear_cam_2023-04-14_bad (100 imgs)
+  - id: 439
+    desc: NFB_rear_cam_2023-10-09 (1058 imgs)
 
   crofton:
   - id: 296
@@ -190,6 +194,8 @@ cvat_tasks:
     desc: twinforks_morning_5 (1025 imgs)
   - id: cropped_365
     desc: twinforks_morning_6 (1081 imgs)
+  - id: 436
+    desc: twinforks_buses_motos_2023-05 (1287 imgs)
 
 empty_frames:
   nysta:

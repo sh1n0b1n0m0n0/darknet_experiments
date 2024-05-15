@@ -16,7 +16,7 @@ def main():
         raise Exception("please specify DN_BIN env variable that points to compiled darknet")
     darknet_path = os.environ["DN_BIN"]
 
-    paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["train"]
+    paths = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["train"]
 
     weights_path = Path("runs/train/backup/")
     weights_path.mkdir(parents=True, exist_ok=True)
@@ -27,8 +27,8 @@ def main():
         "-dont_show",
         "-map",
         paths['obj_data'],
-        paths['cfg'],
-        '/home/alexsh/darknet_experiments/runs/train/backup/yolo_best.weights'
+        paths['cfg']
+        
     ]
 
     existing_weights = Path("yolo_best.weights")

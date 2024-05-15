@@ -8,11 +8,11 @@ def main():
     gt_path = darknet_helper_path + "convert_darknet_gt_to_pascal_voc_gt.py"
     det_path = darknet_helper_path + "convert_darknet_json_detect_to_pascal_voc_detect.py"
 
-    paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["make_gt_det"]
+    paths = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["make_gt_det"]
     subprocess.run(["python",
                     gt_path,
                     "-file_path", 
-                    paths["valid_txt"], 
+                    paths["test_txt"], 
                     "-names",
                     paths["obj_names"], 
                     "-save_path",
@@ -24,6 +24,8 @@ def main():
                     paths["result"], 
                     "-save_path",
                     paths["det_path"]])
+
+    Path(paths["results_path"]).mkdir(parents=True, exist_ok=True)
 
 if __name__ == "__main__":
     main()

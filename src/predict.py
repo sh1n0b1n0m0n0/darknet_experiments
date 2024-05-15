@@ -13,7 +13,7 @@ def main():
         raise Exception("please specify DN_BIN env variable that points to compiled darknet")
     darknet_path = os.environ["DN_BIN"]
 
-    paths = yaml.safe_load(open(Path.cwd() / Path("paths.yaml")))["predict"]
+    paths = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["predict"]
     detect_path = Path("runs/detect/")
     detect_path.mkdir(parents=True, exist_ok=True)
     test_txt = Path(paths['test_txt'])
