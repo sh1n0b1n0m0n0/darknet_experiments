@@ -1,21 +1,21 @@
 check:
-  train_txt: data/prepared/train.txt
-  valid_txt: data/prepared/valid.txt
-  test_txt: data/prepared/test.txt
+  train_txt: data_rv2/prepared/train.txt
+  valid_txt: data_rv2/prepared/test.txt
+  test_txt: data_rv2/prepared/test.txt
 
 train:
-  cfg: cfg/yolo.cfg
-  obj_data: data/prepared/obj.data
+  cfg: cfg/yolov3-tiny_5cls.cfg
+  obj_data: data_rv2/prepared/obj.data
   obj_names: cfg/obj.names
-  datasets_root: data
+  datasets_root: data_rv2
 
 predict:
-  cfg: cfg/yolo.cfg
-  obj_data: data/prepared/obj.data
+  cfg: cfg/yolov3-tiny_5cls.cfg
+  obj_data: data_rv2/prepared/obj.data
   obj_names: cfg/obj.names
   weights: runs/train/backup/yolo_best.weights
   pred_image: predictions.jpg
-  test_txt: data/prepared/test.txt
+  test_txt: data_rv2/prepared/test.txt
 
 evaluate:
   gt_path: runs/eval/pascalvoc_gt
@@ -23,19 +23,20 @@ evaluate:
   save_path: runs/eval/results
 
 make_json:
-  cfg: cfg/yolo.cfg
-  obj_data: data/prepared/obj.data
+  cfg: cfg/yolov3-tiny_5cls.cfg
+  obj_data: data_rv2/prepared/obj.data
   obj_names: cfg/obj.names
-  valid_txt: data/prepared/valid.txt
-  weights: runs/train/backup/yolo_best.weights
+  test_txt: data_rv2/prepared/test.txt
+  weights: runs/train/backup/yolov3-tiny_5cls_best.weights
   result: runs/eval/result.json
 
 make_gt_det:
-  valid_txt: data/prepared/valid.txt
+  test_txt: data_rv2/prepared/test.txt
   obj_names: cfg/obj.names
   result: runs/eval/result.json
   gt_path: runs/eval/pascalvoc_gt
   det_path: runs/eval/pascalvoc_det
+  results_path: runs/eval/results
 
 submodule:
   dth: src/darknet_train_helper

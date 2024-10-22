@@ -9,6 +9,8 @@ def main():
     det_path = darknet_helper_path + "convert_darknet_json_detect_to_pascal_voc_detect.py"
 
     paths = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["make_gt_det"]
+    params = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["params"]
+
     subprocess.run(["python",
                     gt_path,
                     "-file_path", 
@@ -21,7 +23,9 @@ def main():
     subprocess.run(["python",
                     det_path,
                     "-file_path", 
-                    paths["result"], 
+                    paths["result"],
+                    "-params_path",
+                    params,
                     "-save_path",
                     paths["det_path"]])
 

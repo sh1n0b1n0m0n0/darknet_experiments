@@ -27,8 +27,7 @@ def main():
         "-dont_show",
         "-map",
         paths['obj_data'],
-        paths['cfg']
-        
+        paths['cfg'],
     ]
 
     existing_weights = Path("yolo_best.weights")

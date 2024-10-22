@@ -16,6 +16,8 @@ def main():
     subprocess.run([
         "python",
         pascalvoc_path,
+        "-img",
+        str(cwd / paths["img_source"]),
         "-gt",
         str(cwd / paths["gt_path"]),
         "-det",

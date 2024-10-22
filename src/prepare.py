@@ -57,7 +57,7 @@ def main():
     datasets = params["datasets"]
     train_size = params["train_size"]
     seed = params["seed"]
-    classes = params["classes"]
+    classes = params["names"]
 
     datasets_path = 'data'
     prepared_path = Path(datasets_path) / Path('prepared')

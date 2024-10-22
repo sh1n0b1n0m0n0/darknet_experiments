@@ -132,7 +132,7 @@ prepare:
   decay: 0.0005
   height: 416
   learning_rate: 0.01
-  max_batches: 400000
+  max_batches: 50000
   momentum: 0.9
   policy: steps
   remove_small_boxes: true
