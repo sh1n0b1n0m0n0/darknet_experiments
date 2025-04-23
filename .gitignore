@@ -10,12 +10,15 @@
 /data_old
 /old_train
 /pretrained
-/src/rv_yolo_5cls
+/models_lpr
+/models_rv2
+/data_lpr
 *.list
 *.jp*g
 *.png
-yolo_best.weights
+*.txt
 *.yaml
 !params.yaml
 !paths.yaml
+!config.yaml
 !dvc.yaml

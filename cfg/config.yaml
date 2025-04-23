@@ -1,0 +1,19 @@
+train_txt: /home/alexsh/darknet_experiments/data_lpr/prepared/train_ptl_4cls.txt
+valid_txt: /home/alexsh/darknet_experiments/data_lpr/prepared/test_ptl_4cls.txt
+test_txt: /home/alexsh/darknet_experiments/data_lpr/prepared/test_ptl_4cls.txt
+
+names_file: /home/alexsh/darknet_experiments/cfg/obj_4cls.names
+cfg_file: /home/alexsh/darknet_experiments/cfg/yolov4_4cls.cfg
+data_file: /home/alexsh/darknet_experiments/data_lpr/prepared/obj.data
+
+weights: /home/alexsh/darknet_experiments/runs/train/backup/yolov4_4cls_best.weights
+result_json_path: /home/alexsh/darknet_experiments/runs/eval/result.json
+gt_path: /home/alexsh/darknet_experiments/runs/eval/test_.5/pascalvoc_gt
+det_path: /home/alexsh/darknet_experiments/runs/eval/test_.5/pascalvoc_det
+odm_result_path: /home/alexsh/darknet_experiments/runs/eval/test_.5/odm_results
+
+class_thresholds:
+    plate: .5
+    vehicle: .5
+    person: .5
+    windshield: .5
