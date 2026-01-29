@@ -1,0 +1,25 @@
+data_root: /home/alexsh/temp/other_datasets/Russia_cars_and_pedestrians/
+train_txt: train_ptl_4cls_130126.txt
+# valid_txt: test_ptl_4cls_130126.txt
+# test_txt: test_ptl_4cls_130126.txt
+valid_txt: test.txt
+test_txt: test.txt
+
+names_file: /home/alexsh/darknet_experiments/cfg/ptl/obj_4cls.names
+data_file: /home/alexsh/darknet_experiments/cfg/ptl/obj.data
+cfg_file: /home/alexsh/darknet_experiments/cfg/ptl/yolov4_4cls.cfg
+
+# checkpoint_root: /home/alexsh/darknet_experiments/runs/train/backup
+checkpoint_root: /home/alexsh/temp/other_datasets/Russia_cars_and_pedestrians/
+weights: /home/alexsh/darknet_experiments/runs/train/backup/yolov4_4cls_best.weights
+result_json_path: eval/result.json
+gt_path: eval/test_.01/pascalvoc_gt
+det_path: eval/test_.01/pascalvoc_det
+odm_result_path: eval/test_.01/odm_results
+
+darknet_thresh: .01
+class_thresholds:
+    plate: .01
+    vehicle: .01
+    person: .01
+    windshield: .01
