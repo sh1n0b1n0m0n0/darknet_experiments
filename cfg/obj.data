@@ -1,0 +1,6 @@
+train=/home/alexsh/darknet_experiments/data_lpr/prepared/train_ptl_4cls.txt
+valid=/home/alexsh/darknet_experiments/data_lpr/prepared/test_ptl_4cls.txt
+test=/home/alexsh/darknet_experiments/data_lpr/prepared/test_ptl_4cls.txt
+classes=4
+names=/home/alexsh/darknet_experiments/cfg/obj_4cls.names
+backup=/home/alexsh/darknet_experiments/runs/train/backup

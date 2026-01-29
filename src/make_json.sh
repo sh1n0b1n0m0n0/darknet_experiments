@@ -1,6 +1,3 @@
-cd /home/alexsh/darknet_experiments/src && \
-
-python make_json.py \
-    --data=/home/alexsh/darknet_experiments/cfg/config_2.yaml \
-
-cd /home/alexsh/darknet_experiments
+python src/make_json.py \
+    --cfg_root=cfg/only_plates \
+    --data=config.yaml

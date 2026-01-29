@@ -6,27 +6,29 @@ import subprocess
 
 
 def main(
+    cfg_root: PathLike,
     data: PathLike
 ):
     ODM_path = "./Object-Detection-Metrics/"
     pascalvoc_path = "pascalvoc.py"
-    config = yaml.safe_load(open(Path(data)))
-    cwd = Path().resolve()
+    config_path = Path.cwd().parent / cfg_root / data
+    print(config_path)
+    config = yaml.safe_load(open(config_path))
 
-    (cwd / config["odm_result_path"]).mkdir(parents=True, exist_ok=True)
+    (Path(config["checkpoint_root"]) / config["odm_result_path"]).mkdir(parents=True, exist_ok=True)
 
     chdir(ODM_path)
     subprocess.run([
         "python",
         pascalvoc_path,
         "-img",
-        str(cwd / config["test_txt"]),
+        Path(config["data_root"]) / config["test_txt"], 
         "-gt",
-        str(cwd / config["gt_path"]),
+        Path(config["checkpoint_root"]) / config["gt_path"],
         "-det",
-        str(cwd / config["det_path"]),
+        Path(config["checkpoint_root"]) / config["det_path"],
         "-sp",
-        str(cwd / config["odm_result_path"]),
+        Path(config["checkpoint_root"]) / config["odm_result_path"],
         "--noplot"
     ])
 

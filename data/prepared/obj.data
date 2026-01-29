@@ -1,6 +1,6 @@
-train = data/prepared/train.txt
-names = cfg/obj.names
-backup = runs/train/backup
+train = /home/alexsh/darknet_experiments/data/train.txt
+names = /home/alexsh/darknet_experiments/data/obj.names
+backup = /home/alexsh/darknet_experiments/data/backup
 classes = 20
-valid = data/prepared/valid.txt
-test = data/prepared/valid.txt
+valid = /home/alexsh/darknet_experiments/data/valid.txt
+test = /home/alexsh/darknet_experiments/data/valid.txt
