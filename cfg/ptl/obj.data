@@ -1,0 +1,6 @@
+train=/home/alexsh/darknet_experiments/data_lpr/prepared/train_ptl_4cls_130126.txt
+valid=/home/alexsh/temp/other_datasets/Russia_cars_and_pedestrians/test.txt
+test=/home/alexsh/temp/other_datasets/Russia_cars_and_pedestrians/test.txt
+classes=4
+names=/home/alexsh/darknet_experiments/cfg/ptl/obj_4cls.names
+backup=/home/alexsh/darknet_experiments/runs/train/backup

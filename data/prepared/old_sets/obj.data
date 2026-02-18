@@ -1,0 +1,6 @@
+train = data/prepared/train.txt
+names = cfg/obj.names
+backup = runs/train/backup
+classes = 20
+valid = data/prepared/test_20cls_260625.txt
+test = data/prepared/test_20cls_260625.txt

@@ -1,0 +1,19 @@
+data_root: /home/alexsh/temp/rv_yolo_1cls_plates/cfg
+train_txt: train_280126.txt
+valid_txt: test_280126.txt
+test_txt: test_280126.txt
+
+names_file: /home/alexsh/temp/rv_yolo_1cls_plates/cfg/yolov3-tiny.names
+data_file: /home/alexsh/temp/rv_yolo_1cls_plates/cfg/obj.data
+cfg_file: /home/alexsh/temp/rv_yolo_1cls_plates/cfg/yolov3-tiny_416x256.cfg
+
+checkpoint_root: /home/alexsh/temp/rv_yolo_1cls_plates/backup
+weights: /home/alexsh/temp/rv_yolo_1cls_plates/backup/yolov3-tiny_416x256_best.weights
+result_json_path: ov_full_no_plate_df1/result.json
+gt_path: ov_full_no_plate_df1/test_.01/pascalvoc_gt
+det_path: ov_full_no_plate_df1/test_.01/pascalvoc_det
+odm_result_path: ov_full_no_plate_df1/test_.01/odm_results
+
+darknet_thresh: .01
+class_thresholds:
+    plate: .01

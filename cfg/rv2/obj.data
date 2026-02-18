@@ -1,0 +1,6 @@
+train=/home/alexsh/darknet_experiments/data/prepared/train_131125.txt
+valid=/home/alexsh/darknet_experiments/data/prepared/test_sideview_031125.txt
+test=/home/alexsh/darknet_experiments/data/prepared/test_sideview_031125.txt
+classes=20
+names=/home/alexsh/darknet_experiments/cfg/rv2/obj_20cls.names
+backup=/home/alexsh/darknet_experiments/runs/train/backup

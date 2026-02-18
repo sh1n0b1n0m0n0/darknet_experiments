@@ -1,35 +1,43 @@
+import fire
 import yaml
 from pathlib import Path
+from os import PathLike
 import subprocess
 
 
-def main():
-    darknet_helper_path = "./src/darknet_train_helper/"
+def main(
+    cfg_root: PathLike,
+    data: PathLike
+):
+    darknet_helper_path = "./darknet_train_helper/"
     gt_path = darknet_helper_path + "convert_darknet_gt_to_pascal_voc_gt.py"
     det_path = darknet_helper_path + "convert_darknet_json_detect_to_pascal_voc_detect.py"
 
-    paths = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["make_gt_det"]
-    params = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["params"]
+    config_path = Path.cwd().parent / cfg_root / data
+    print(config_path)
+    config = yaml.safe_load(open(config_path))
 
+    # gt script activation
     subprocess.run(["python",
                     gt_path,
-                    "-file_path", 
-                    paths["test_txt"], 
+                    "-test_txt", 
+                    Path(config["data_root"]) / config["test_txt"], 
                     "-names",
-                    paths["obj_names"], 
+                    config["names_file"], 
                     "-save_path",
-                    paths["gt_path"]])
-
+                    Path(config["checkpoint_root"]) / config["gt_path"]])
+    # det script activation
     subprocess.run(["python",
                     det_path,
-                    "-file_path", 
-                    paths["result"],
-                    "-params_path",
-                    params,
+                    "-result_json_path", 
+                    Path(config["checkpoint_root"]) / config["result_json_path"],
+                    "-data",
+                    Path.cwd().parent / cfg_root / data,
                     "-save_path",
-                    paths["det_path"]])
+                    Path(config["checkpoint_root"]) / config["det_path"]]
+                    )
 
-    Path(paths["results_path"]).mkdir(parents=True, exist_ok=True)
+    (Path(config["checkpoint_root"]) / config["odm_result_path"]).mkdir(parents=True, exist_ok=True)
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)

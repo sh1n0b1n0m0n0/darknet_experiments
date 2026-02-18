@@ -1,31 +1,36 @@
+import fire
 import yaml
 from pathlib import Path
+from os import PathLike, chdir
 import subprocess
-import os
 
 
-def main():
-    ODM_path = "src/Object-Detection-Metrics/"
+def main(
+    cfg_root: PathLike,
+    data: PathLike
+):
+    ODM_path = "./Object-Detection-Metrics/"
     pascalvoc_path = "pascalvoc.py"
-    paths = yaml.safe_load(open(Path.cwd() / Path("paths_lpr.yaml")))["evaluate"]
-    cwd = Path().resolve()
+    config_path = Path.cwd().parent / cfg_root / data
+    print(config_path)
+    config = yaml.safe_load(open(config_path))
 
-    (cwd / paths["save_path"]).mkdir(parents=True, exist_ok=True)
+    (Path(config["checkpoint_root"]) / config["odm_result_path"]).mkdir(parents=True, exist_ok=True)
 
-    os.chdir(ODM_path)
+    chdir(ODM_path)
     subprocess.run([
         "python",
         pascalvoc_path,
         "-img",
-        str(cwd / paths["img_source"]),
+        Path(config["data_root"]) / config["test_txt"], 
         "-gt",
-        str(cwd / paths["gt_path"]),
+        Path(config["checkpoint_root"]) / config["gt_path"],
         "-det",
-        str(cwd / paths["det_path"]),
+        Path(config["checkpoint_root"]) / config["det_path"],
         "-sp",
-        str(cwd / paths["save_path"]),
+        Path(config["checkpoint_root"]) / config["odm_result_path"],
         "--noplot"
     ])
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)
